@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Player } from "@lottiefiles/react-lottie-player";
 
 const Preloader = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
