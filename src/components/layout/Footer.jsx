@@ -57,12 +57,12 @@ const Footer = () => {
               <img className="w-[2vw]" src={insta} alt="Instagram Icon" />
               <p>Instagram</p>
             </a>
-            <button 
+            {/* <button 
               onClick={handleEmailClick}
               className="text-left hover:text-[#ff5d8f] active:scale-95 transition-all duration-300"
             >
               liveinpaints@gmail.com
-            </button>
+            </button> */}
           </div>
         </div>
       </div>
