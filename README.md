@@ -1,7 +1,5 @@
 # LiveInPaints
 
-![LiveInPaints Logo](src/assets/images/logo.png)
-
 ## Where Art Comes to Life
 
 LiveInPaints is a premium e-commerce platform that brings your photos to life with beautiful artistic animations. Our website offers a seamless shopping experience for custom illustrations, paintings, bookmarks, wallet cards, business cards, and tile frames.

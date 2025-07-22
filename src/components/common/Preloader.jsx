@@ -57,28 +57,6 @@ const Preloader = ({ onLoadingComplete }) => {
       }}
     >
       <div className="preloader-content">
-        <motion.div
-          className="lottie-container"
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          {!showFallback ? (
-            <Player
-              autoplay
-              loop
-              src="paint-splash-loader.json"
-              style={{ width: "200px", height: "200px" }}
-              onEvent={(event) => {
-                if (event === "error") setShowFallback(true);
-              }}
-            />
-          ) : (
-            <div className="fallback-loader">
-              {/* No visual fallback - cleaner look */}
-            </div>
-          )}
-        </motion.div>
 
         <motion.h1
           className="preloader-title"
