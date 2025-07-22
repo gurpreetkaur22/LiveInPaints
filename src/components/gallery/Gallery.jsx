@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import galleryItems from "../../videos";
-import rainbow from "../../assets/images/rainbow.svg";
-import ipad from "../../assets/images/ipad.svg";
-import paints from "../../assets/images/paints.svg";
-import butterfly from "../../assets/images/butterfly.svg";
+import rainbow from "/images/rainbow.webp";
+import ipad from "/images/ipad.webp";
+import paints from "/images/paints.webp";
+import butterfly from "/images/butterfly.webp";
 import "./GalleryMobileFix.css";
 import "./GalleryTabletFix.css";
 import "./GalleryTabletFix.css";
@@ -98,21 +98,25 @@ const Gallery = () => {
         src={rainbow}
         alt=""
         className="opacity-80 absolute left-[15vw] w-[5vw] -rotate-30 top-[20vw] hidden md:block"
+        draggable={false}
       />
       <img
         src={ipad}
         alt=""
         className="opacity-80 absolute right-[15vw] w-[7vw] -rotate-30 top-[20vw] hidden md:block"
+        draggable={false}
       />
       <img
         src={paints}
         alt=""
         className="opacity-80 absolute right-[45vw] w-[10vw] -rotate-30 top-[2vw] hidden md:block"
+        draggable={false}
       />
       <img
         src={butterfly}
         alt=""
         className="opacity-80 absolute right-[45vw] w-[3.5vw] -rotate-30 bottom-[2vw] hidden md:block"
+        draggable={false}
       />
 
       <h1 className="text-[3vw] absolute backdrop-blur-xl bg-white/30 shadow-md rounded-2xl playfair-display-medium z-50 gallery-title">
@@ -124,7 +128,7 @@ const Gallery = () => {
             {row.map((item) => (
               <div key={item.id} className="item">
                 <div className="preview-img">
-                  <img src={item.video.previewImg} alt={item.video.name} />
+                  <img src={item.video.previewImg} alt={item.video.name} draggable={false} />
                 </div>
                 <p className="videoName text-center">{item.video.name}</p>
 

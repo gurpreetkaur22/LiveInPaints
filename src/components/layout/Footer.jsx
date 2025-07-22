@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
-import insta from "../../assets/images/icons8-instagram.svg";
+import logo from "/images/logo.webp";
+import insta from "/images/icons8-instagram.webp";
 import "./FooterResponsive.css";
 
 const Footer = () => {
@@ -15,7 +15,7 @@ const Footer = () => {
       <div className="footer-main relative flex justify-between items-center px-20 py-10">
         <div className="div1 flex flex-col items-center">
           <NavLink to="/">
-            <img className="footer-logo w-[15vw]" src={logo} alt="LiveInPaints Logo" />
+            <img className="footer-logo w-[15vw]" draggable="false" src={logo} alt="LiveInPaints Logo" />
           </NavLink>
           <p className="tagline footer-tagline text-[#390F0F] text-[5vw] -top-15 dancing-script-bold">
             Where Art Comes to Life
@@ -54,7 +54,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="flex gap-2 hover:text-[#ff5d8f] active:scale-95 transition-all duration-300"
             >
-              <img className="w-[2vw]" src={insta} alt="Instagram Icon" />
+              <img className="w-[2vw]" draggable="false" src={insta} alt="Instagram Icon" />
               <p>Instagram</p>
             </a>
             {/* <button 

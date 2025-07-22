@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import cursor from '/images/cursorpink.webp'
 
 const CustomCursor = () => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -75,7 +76,7 @@ const CustomCursor = () => {
         top: `${position.y}px`,
         width: '30px',
         height: '30px',
-        backgroundImage: 'url("/cursorpink.png")',
+        backgroundImage: `url(${cursor})`,
         backgroundSize: 'contain',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',

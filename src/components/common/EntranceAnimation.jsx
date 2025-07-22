@@ -4,14 +4,14 @@ import gsap from "gsap";
 import "./EntranceAnimation.css";
 
 // Import images from assets folder
-import logo from "../../assets/images/logo.png";
-import pre1 from "../../assets/images/hare.jpg";
-import pre2 from "../../assets/images/illus2.jpg";
-import pre3 from "../../assets/images/pre3.jpg";
-import bookmark from "../../assets/images/bookmark3.jpg";
-import rainbow from "../../assets/images/rainbow.png";
-import butterfly from "../../assets/images/butterfly.svg";
-import paints from "../../assets/images/paints.svg";
+import logo from "/images/logo.webp";
+import pre1 from "/images/hare.webp";
+import pre2 from "/images/illus2.webp";
+import pre3 from "/images/pre3.webp";
+import bookmark from "/images/bookmark3.webp";
+import rainbow from "/images/rainbow.webp";
+import butterfly from "/images/butterfly.webp";
+import paints from "/images/paints.webp";
 
 const EntranceAnimation = ({ onComplete }) => {
   const containerRef = useRef(null);
@@ -252,12 +252,14 @@ const EntranceAnimation = ({ onComplete }) => {
         src={butterfly}
         alt="Butterfly"
         className="butterfly-decor absolute top-[25%] left-[5%] sm:top-[20%] sm:left-[8%] md:top-[15%] md:left-[10%] w-[40px] sm:w-[60px] md:w-[80px] opacity-0 z-20"
+        draggable="false"
       />
 
       <img
         src={paints}
         alt="Paints"
         className="paints-decor absolute bottom-[15%] right-[5%] sm:bottom-[18%] sm:right-[10%] md:bottom-[20%] md:right-[15%] w-[12vw] sm:w-[10vw] md:w-[8vw] opacity-0 z-20"
+        draggable="false"
       />
 
       <div className="relative flex flex-col items-center justify-center z-10 px-4">
@@ -271,6 +273,7 @@ const EntranceAnimation = ({ onComplete }) => {
             src={logo}
             alt="LiveInPaints Logo"
             className="logo-image w-[100px] h-[100px] sm:w-[140px] sm:h-[140px] md:w-[180px] md:h-[180px] object-contain relative z-10"
+            draggable="false"
           />
         </div>
 
@@ -281,6 +284,7 @@ const EntranceAnimation = ({ onComplete }) => {
               src={pre1}
               alt="Artwork"
               className="w-full h-full object-cover"
+              draggable="false"
             />
           </div>
           <div className="artwork-image w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
@@ -288,6 +292,7 @@ const EntranceAnimation = ({ onComplete }) => {
               src={pre2}
               alt="Artwork"
               className="w-full h-full object-cover"
+              draggable="false"
             />
           </div>
           <div className="artwork-image w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
@@ -295,6 +300,7 @@ const EntranceAnimation = ({ onComplete }) => {
               src={pre3}
               alt="Artwork"
               className="w-full h-full object-cover"
+              draggable="false"
             />
           </div>
           <div className="artwork-image w-[60px] h-[60px] sm:w-[80px] sm:h-[80px] md:w-[100px] md:h-[100px] rounded-lg overflow-hidden shadow-lg transition-transform duration-300 hover:scale-105">
@@ -302,6 +308,7 @@ const EntranceAnimation = ({ onComplete }) => {
               src={bookmark}
               alt="Artwork"
               className="w-full h-full object-cover"
+              draggable="false"
             />
           </div>
         </div>
@@ -324,7 +331,8 @@ const EntranceAnimation = ({ onComplete }) => {
         <img
           src={rainbow}
           alt="Rainbow"
-          className="rainbow-decor absolute bottom-[10%] right-[10%] sm:bottom-[12%] sm:right-[12%] md:bottom-[15%] md:right-[15%] w-[60px] sm:w-[90px] md:w-[120px] opacity-0 z-20"
+          className="rainbow-decor absolute bottom-[10%] right-[10%] sm:bottom-[12%] sm:right-[12%] md:right-[15%] w-[60px] sm:w-[90px] md:w-[120px] opacity-0 z-20"
+          draggable="false"
         />
       </div>
     </motion.div>

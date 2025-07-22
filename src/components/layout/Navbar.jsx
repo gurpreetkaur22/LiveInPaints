@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import accountIcon from "../../assets/images/icons8-account1.svg";
-import accountIconFilled from "../../assets/images/icons8-account-filled.svg";
-import cartIcon from "../../assets/images/cart.svg";
-import cartIconFilled from "../../assets/images/cart-filled.svg";
+import accountIcon from "/images/icons8-account1.webp";
+import accountIconFilled from "/images/icons8-account-filled.webp";
+import cartIcon from "/images/cart.webp";
+import cartIconFilled from "/images/cart-filled.webp";
 import { motion, AnimatePresence } from "motion/react";
 import "./Navbar.css";
 
@@ -120,6 +120,7 @@ const Navbar = ({ showNavbar }) => {
                 className="w-full h-full"
                 src={isAccountHovered ? accountIconFilled : accountIcon}
                 alt="Account"
+                draggable={false}
               />
             </div>
           </NavLink>
@@ -136,6 +137,7 @@ const Navbar = ({ showNavbar }) => {
                 className="w-full h-full"
                 src={isCartHovered ? cartIconFilled : cartIcon}
                 alt="Cart"
+                draggable={false}
               />
             </div>
           </NavLink>
@@ -232,6 +234,7 @@ const Navbar = ({ showNavbar }) => {
                     <img
                       src={isAccountHovered ? accountIconFilled : accountIcon}
                       alt="Account"
+                      draggable={false}
                     />
                   </div>
                 </NavLink>
@@ -246,6 +249,7 @@ const Navbar = ({ showNavbar }) => {
                     <img
                       src={isCartHovered ? cartIconFilled : cartIcon}
                       alt="Cart"
+                      draggable={false}
                     />
                   </div>
                 </NavLink>

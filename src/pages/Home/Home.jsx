@@ -3,18 +3,18 @@ import { motion, useScroll, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
-import painting from "../../assets/images/hare.jpg";
-import illus from "../../assets/images/illus1.jpg";
-import tile from "../../assets/images/tile1.jpg";
-import bookmark from "../../assets/images/bookmark4.jpg";
-import walletcard from "../../assets/images/walletCard1.jpg";
-import owner from "../../assets/images/owner.jpg";
-import paintbrush1 from "../../assets/images/paintbrush.png";
-import businesscard from "../../assets/images/businesscard.jpg";
-import paintbrush2 from "../../assets/images/paintbrush3.png";
-import paintpallete from "../../assets/images/icons8-microsoft-paint.svg";
-import ipad_pencil from "../../assets/images/ipad_pencil.png";
-import lappy from "../../assets/images/lappy.png";
+import painting from "/images/hare.webp";
+import illus from "/images/illus1.webp";
+import tile from "/images/tile1.webp";
+import bookmark from "/images/bookmark4.webp";
+import walletcard from "/images/walletCard1.webp";
+import owner from "/images/owner.webp";
+import paintbrush1 from "/images/paintbrush.webp";
+import businesscard from "/images/businesscard.webp";
+import paintbrush2 from "/images/paintbrush3.webp";
+import paintpallete from "/images/icons8-microsoft-paint.webp";
+import ipad_pencil from "/images/ipad_pencil.webp";
+import lappy from "/images/lappy.webp";
 
 import Gallery from "../../components/gallery/Gallery";
 import ScreenshotTestimonials from "../../components/testimonials/ScreenshotTestimonials";
@@ -24,7 +24,7 @@ import "./ElemFix.css";
 import "../../components/gallery/GalleryMobileFix.css";
 import "../../components/gallery/GalleryTabletFix.css";
 import "./section4-styles.css";
-import '../../assets/fonts/fonts.css'
+import "../../assets/fonts/fonts.css";
 
 const Home = () => {
   // Navigation hook
@@ -116,6 +116,7 @@ const Home = () => {
           transition={{ duration: 1 }}
         >
           <motion.img
+            draggable="false"
             src={paintbrush1}
             alt="Paint Brush"
             className="w-full h-auto"
@@ -152,6 +153,7 @@ const Home = () => {
           transition={{ duration: 1, delay: 0.3 }}
         >
           <motion.img
+            draggable="false"
             src={paintbrush2}
             alt="Paint Brush"
             className="w-full h-auto"
@@ -189,6 +191,7 @@ const Home = () => {
           transition={{ duration: 1, delay: 0.3 }}
         >
           <motion.img
+            draggable="false"
             src={ipad_pencil}
             alt="iPad Pencil"
             className="w-full h-auto"
@@ -228,6 +231,7 @@ const Home = () => {
           transition={{ duration: 1, delay: 0.3 }}
         >
           <motion.img
+            draggable="false"
             src={lappy}
             alt="Laptop"
             className="w-full h-auto"
@@ -262,6 +266,7 @@ const Home = () => {
           transition={{ duration: 1, delay: 0.6 }}
         >
           <motion.img
+            draggable="false"
             src={paintpallete}
             alt="Paint Palette"
             className="w-full h-auto"
@@ -317,7 +322,12 @@ const Home = () => {
           className="elem"
           onClick={() => navigate("/products?category=paintings")}
         >
-          <img src={painting} alt="Paintings" className="product-image" />
+          <img
+            draggable="false"
+            src={painting}
+            alt="Paintings"
+            className="product-image"
+          />
           <div className="elem-content">
             <h1>Paintings</h1>
             <h4>Starts from ₹299</h4>
@@ -328,6 +338,7 @@ const Home = () => {
           onClick={() => navigate("/products?category=illustrations")}
         >
           <img
+            draggable="false"
             src={illus}
             alt="Custom Illustrations"
             className="product-image"
@@ -341,7 +352,12 @@ const Home = () => {
           className="elem"
           onClick={() => navigate("/products?category=bookmarks")}
         >
-          <img src={bookmark} alt="Cute Bookmarks" className="product-image" />
+          <img
+            draggable="false"
+            src={bookmark}
+            alt="Cute Bookmarks"
+            className="product-image"
+          />
           <div className="elem-content">
             <h1>Cute Bookmarks</h1>
             <h4>Starts from ₹99</h4>
@@ -351,7 +367,12 @@ const Home = () => {
           className="elem"
           onClick={() => navigate("/products?category=walletcards")}
         >
-          <img src={walletcard} alt="Wallet Cards" className="product-image" />
+          <img
+            draggable="false"
+            src={walletcard}
+            alt="Wallet Cards"
+            className="product-image"
+          />
           <div className="elem-content">
             <h1>Wallet Cards</h1>
             <h4>Starts from ₹199</h4>
@@ -362,6 +383,7 @@ const Home = () => {
           onClick={() => navigate("/products?category=businesscards")}
         >
           <img
+            draggable="false"
             src={businesscard}
             alt="Business Cards"
             className="product-image"
@@ -375,7 +397,12 @@ const Home = () => {
           className="elem elemlast"
           onClick={() => navigate("/products?category=tileframes")}
         >
-          <img src={tile} alt="Tile Frames" className="product-image" />
+          <img
+            draggable="false"
+            src={tile}
+            alt="Tile Frames"
+            className="product-image"
+          />
           <div className="elem-content">
             <h1>Tile Frames</h1>
             <h4>Starts from ₹599</h4>
@@ -421,6 +448,7 @@ const Home = () => {
 
                 <div className="bg-[#FFECF2] p-3 rounded-2xl">
                   <img
+                    draggable="false"
                     className="rounded-xl w-full object-cover max-h-[70vh]"
                     src={owner}
                     alt="Artist at work"
@@ -513,6 +541,7 @@ const Home = () => {
 
         {/* Decorative paintbrushes */}
         <motion.img
+          draggable="false"
           src={paintbrush1}
           alt="Paint Brush"
           className="absolute w-[10vw] left-[2%] bottom-[5%] opacity-30 z-0"
@@ -523,6 +552,7 @@ const Home = () => {
           viewport={{ once: true }}
         />
         <motion.img
+          draggable="false"
           src={paintbrush2}
           alt="Paint Brush"
           className="absolute w-[8vw] right-[2%] top-[15%] opacity-30 z-0"
