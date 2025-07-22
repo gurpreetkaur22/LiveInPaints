@@ -1,0 +1,288 @@
+/* Testimonials Responsive Styles */
+
+.testimonials-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 500px; /* Ensure consistent height */
+}
+
+.testimonials-gallery {
+  width: 100%;
+  position: relative;
+}
+
+/* Fixed height card container for consistent button positioning */
+.mobile-testimonials-container {
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 400px; /* Fixed height to prevent button shifting */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .testimonials-container {
+    padding: 2rem 1rem;
+    min-height: 450px; /* Ensure consistent height on mobile */
+  }
+  
+  .screenshot-card {
+    width: 90%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  /* Fixed height card container */
+  .mobile-testimonial {
+    height: 350px; /* Fixed height for all testimonials */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+  
+  .mobile-testimonial.active {
+    opacity: 1;
+    position: relative;
+    pointer-events: auto;
+  }
+  
+  /* Ensure images are centered vertically */
+  .mobile-testimonial .bg-white {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 12vw;
+  }
+  
+  .mobile-testimonial img {
+    max-height: 320px;
+    width: auto;
+    margin: 0 auto;
+    object-fit: contain;
+  }
+  
+  .section-6 h1 {
+    font-size: 7vw !important;
+    margin-bottom: 0.5rem;
+  }
+  
+  .section-6 p {
+    font-size: 4vw !important;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .testimonials-container {
+    padding: 3rem 2rem;
+  }
+  
+  .screenshot-card {
+    width: 30%;
+    max-width: 320px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .section-6 h1 {
+    font-size: 4vw !important;
+    margin-bottom: 0.75rem;
+  }
+  
+  .section-6 p {
+    font-size: 2.5vw !important;
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Touch device swipe animation */
+@media (hover: none) {
+  .screenshot-card {
+    transition: transform 0.3s ease;
+  }
+  
+  .screenshot-card:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Navigation buttons for all screen sizes */
+.nav-button-left,
+.nav-button-right {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  background-color: white;
+  border: 2px solid #FF5D8F;
+  box-shadow: 0 4px 12px rgba(255, 93, 143, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-button-left:hover,
+.nav-button-right:hover {
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 16px rgba(255, 93, 143, 0.4);
+}
+
+.nav-button-left:active,
+.nav-button-right:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Mobile navigation and indicators */
+@media (max-width: 767px) {
+  /* Enhanced navigation buttons for mobile */
+  .nav-button-left,
+  .nav-button-right {
+    width: 44px;
+    height: 44px;
+    background-color: white;
+    border: 3px solid #FF5D8F;
+    box-shadow: 0 4px 12px rgba(255, 93, 143, 0.5);
+  }
+  
+  .nav-button-left {
+    left: 10px;
+  }
+  
+  .nav-button-right {
+    right: 10px;
+  }
+  
+  /* Add animation to draw attention */
+  @keyframes pulse-nav {
+    0% { transform: translateY(-50%) scale(1); box-shadow: 0 4px 12px rgba(255, 93, 143, 0.3); }
+    50% { transform: translateY(-50%) scale(1.1); box-shadow: 0 8px 20px rgba(255, 93, 143, 0.5); }
+    100% { transform: translateY(-50%) scale(1); box-shadow: 0 4px 12px rgba(255, 93, 143, 0.3); }
+  }
+  
+  .nav-button-left,
+  .nav-button-right {
+    animation: pulse-nav 2s infinite;
+  }
+  
+  /* Mobile indicators */
+  .mobile-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 8px;
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+  }
+  
+  .mobile-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .mobile-indicator-dot.active {
+    background-color: #FF5D8F;
+    width: 20px;
+    border-radius: 4px;
+  }
+  
+  /* Mobile testimonials wrapper */
+  .mobile-testimonials-wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px;
+  }
+}
+/* 
+Additional mobile fixes */
+@media (max-width: 767px) {
+  /* Fixed card size */
+  .mobile-testimonial-card {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  /* Ensure navigation buttons stay in fixed position */
+  .testimonials-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  /* Ensure consistent container height */
+  .mobile-testimonials-container {
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+}/
+* Ensure navigation buttons are always visible */
+.nav-button-left svg,
+.nav-button-right svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Make navigation buttons even more visible on small screens */
+@media (max-width: 480px) {
+  .nav-button-left,
+  .nav-button-right {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    border: 3px solid #FF5D8F;
+  }
+  
+  .nav-button-left svg,
+  .nav-button-right svg {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .nav-button-left {
+    left: 5px;
+  }
+  
+  .nav-button-right {
+    right: 5px;
+  }
+  
+  /* Ensure the navigation buttons are above all other elements */
+  .nav-button-left,
+  .nav-button-right {
+    z-index: 999;
+  }
+}

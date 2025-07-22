@@ -1,0 +1,54 @@
+/* Section 4 - Gallery Section Styles */
+
+/* Base styles for section-4 */
+.section-4 {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #ffedf3;
+}
+
+/* Ensure gallery container takes full width and height */
+.gallery-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Tablet-specific styles for section-4 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section-4 {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    width: 100% !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .gallery-container {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* Mobile styles for section-4 */
+@media (max-width: 767px) {
+  .section-4 {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* Landscape tablet adjustments */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .section-4 {
+    height: 100vh !important;
+  }
+}

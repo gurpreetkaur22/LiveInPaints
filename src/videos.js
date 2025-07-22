@@ -1,86 +1,99 @@
+import icon from "./assets/images/icon.jpg";
+import tile from "./assets/images/tile1.jpg";
+import illus from "./assets/images/illus3.jpg";
+import bday from "./assets/images/bdayCard2.jpg";
+import crochet from "./assets/images/crochet1.png";
+import bookmark from "./assets/images/bookmark3.jpg";
+import walletCard from "./assets/images/walletCard2.jpg";
+import semiIllus from "./assets/images/illus1.jpg";
+import painting from "./assets/images/hare.jpg";
+import petIllus from "./assets/images/petIllus.jpg";
+import illusFam from "./assets/images/illusFam.jpg";
+import illusReligious from "./assets/images/illusReligious.jpg";
+import Vbday from "./assets/videos/Vbday.mp4";
+import Vbookmark from "./assets/videos/Vbookmark.mp4";
+import Vcrochet from "./assets/videos/Vcrochet.mp4";
+import Vdetailed from "./assets/videos/Vdetailed.mp4";
+import Vfam from "./assets/videos/Vfam.mp4";
+import Vhare from "./assets/videos/Vhare.mp4";
+import Vpet from "./assets/videos/Vpet.mp4";
+import Vsemi from "./assets/videos/Vsemi.mp4";
+import Vtile from "./assets/videos/Vtile.mp4";
+import VWcard from "./assets/videos/VWcard.mp4";
+import Vreli from "./assets/videos/Vreli.mp4";
+
 const galleryItems = [
   // Row 1 (4 items)
   {
     id: "1-0",
-    imageId: "001",
-    name: "Abstract Canvas",
-    previewImg:
-      "https://images.unsplash.com/photo-1587613758679-3263825fbbc2?q=80&w=800"
+    videoId: Vcrochet,
+    name: "Crochet Art",
+    previewImg: crochet,
   },
   {
     id: "1-1",
-    imageId: "002",
-    name: "Modern Wall Art",
-    previewImg:
-      "https://images.unsplash.com/photo-1585325701961-8c8cf1a0d3eb?q=80&w=800"
+    videoId: VWcard,
+    name: "Modern Wallet Cards",
+    previewImg: walletCard,
   },
   {
     id: "1-2",
-    imageId: "003",
-    name: "Aesthetic Tile Frame",
-    previewImg:
-      "https://images.unsplash.com/photo-1598515210648-7a4f02d9d871?q=80&w=800"
+    videoId: Vbday,
+    name: "Birthday Cards",
+    previewImg: bday,
   },
   {
     id: "1-3",
-    imageId: "004",
-    name: "Color Splash Artwork",
-    previewImg:
-      "https://images.unsplash.com/photo-1599030462784-0ec70b044432?q=80&w=800"
+    videoId: Vsemi,
+    name: "Semi-Detailed Frame Illustration",
+    previewImg: semiIllus,
   },
 
   // Row 2 (3 items)
   {
     id: "2-0",
-    imageId: "005",
-    name: "Illustrated Portrait",
-    previewImg:
-      "https://images.unsplash.com/photo-1602724849088-fc41466b91f0?q=80&w=800"
+    videoId: Vdetailed,
+    name: "Detailed Illustration Frame",
+    previewImg: illus,
   },
   {
     id: "2-1",
-    imageId: "006",
-    name: "Cute Bookmark Set",
-    previewImg:
-      "https://images.unsplash.com/photo-1602016752593-77e3d38d33f6?q=80&w=800"
+    videoId: Vreli,
+    name: "Religious Illustrations",
+    previewImg: illusReligious,
   },
   {
     id: "2-2",
-    imageId: "007",
-    name: "Minimal Art Poster",
-    previewImg:
-      "https://images.unsplash.com/photo-1603575448360-45b97e1cd07b?q=80&w=800"
+    videoId: Vhare,
+    name: "Painting",
+    previewImg: painting,
   },
 
   // Row 3 (4 items)
   {
     id: "3-0",
-    imageId: "008",
-    name: "Custom Hand Sketch",
-    previewImg:
-      "https://images.unsplash.com/photo-1612197527762-08d29b3df43e?q=80&w=800"
+    videoId: Vtile,
+    name: "Tile Frame Artwork",
+    previewImg: tile,
   },
   {
     id: "3-1",
-    imageId: "009",
-    name: "Tile Frame Artwork",
-    previewImg:
-      "https://images.unsplash.com/photo-1585859612194-b2b78b4db56f?q=80&w=800"
+    videoId: Vbookmark,
+    name: "Cute Bookmark Set",
+    previewImg: bookmark,
   },
   {
     id: "3-2",
-    imageId: "010",
-    name: "Abstract Pattern",
-    previewImg:
-      "https://images.unsplash.com/photo-1613428122699-ffec8e04e8e1?q=80&w=800"
+    videoId: Vpet,
+    name: "Pet Illustration",
+    previewImg: petIllus,
   },
   {
     id: "3-3",
-    imageId: "011",
-    name: "Watercolor Dream",
-    previewImg:
-      "https://images.unsplash.com/photo-1601050690892-b59a938e2b0e?q=80&w=800"
-  }
+    videoId: Vfam,
+    name: "Family Illustration",
+    previewImg: illusFam,
+  },
 ];
 
-export default videos;
+export default galleryItems;

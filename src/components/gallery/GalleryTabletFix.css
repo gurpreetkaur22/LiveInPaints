@@ -1,0 +1,150 @@
+/* Tablet-specific fixes for Gallery component (768px - 1024px) */
+
+/* Base styles for the gallery container on tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Container adjustments */
+  .container.gallery-section {
+    width: 100% !important;
+    height: 95vh !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background-color: #ffedf3 !important; /* Match the section-4 background color */
+  }
+
+  /* Gallery layout for tablet - maintain aspect ratio */
+  .gallery {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important; /* Slightly smaller than full width */
+    height: 90vw !important; /* Equal to width for 1:1 aspect ratio */
+    max-height: 90vh !important; /* Ensure it doesn't overflow viewport */
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    gap: 1.5vw !important;
+    padding: 0 !important;
+  }
+
+  /* Row styling */
+  .row {
+    display: flex !important;
+    justify-content: space-between !important;
+    gap: 1.5vw !important;
+    width: 100% !important;
+    height: calc((100% - 3vw) / 3) !important; /* Distribute height evenly among 3 rows */
+  }
+
+  /* Item styling for 1:1 aspect ratio */
+  .item {
+    position: relative !important;
+    height: 100% !important;
+    aspect-ratio: 1/1 !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Adjust items per row */
+  .row:nth-child(1) .item,
+  .row:nth-child(3) .item {
+    width: calc((100% - 4.5vw) / 4) !important; /* 4 items per row with gaps */
+  }
+
+  .row:nth-child(2) .item {
+    width: calc((100% - 3vw) / 3) !important; /* 3 items per row with gaps */
+  }
+
+  /* Preview image styling */
+  .preview-img {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2 !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  .preview-img img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Video wrapper styling */
+  .video-wrapper {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+  }
+
+  /* Title styling */
+  .gallery-section h1 {
+    position: absolute !important;
+    left: 50% !important;
+    top: 5% !important;
+    transform: translateX(-50%) !important;
+    font-size: 3.5vw !important;
+    padding: 0.6rem 1.5rem !important;
+    white-space: nowrap !important;
+    z-index: 50 !important;
+    text-align: center !important;
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(8px) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Decorative elements positioning */
+  .gallery-section img[alt=""] {
+    opacity: 0.6 !important;
+  }
+
+  /* Video name styling */
+  .videoName {
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 1.8vw !important;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    padding: 0.4rem;
+    border-radius: 6px;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.25s;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* Hover effects */
+  .item:hover .preview-img {
+    opacity: 0 !important;
+  }
+
+  .item:hover .videoName {
+    opacity: 1 !important;
+  }
+}
+
+/* Landscape tablet adjustments */
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  .gallery {
+    width: 80vh !important; /* Use viewport height for sizing in landscape */
+    height: 80vh !important;
+    max-width: 90vw !important;
+  }
+
+  .gallery-section h1 {
+    font-size: 2.5vw !important;
+  }
+}

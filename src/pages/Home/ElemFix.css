@@ -1,0 +1,157 @@
+/* Fix for elem layout */
+.elem-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Make sure the last elem (Tile Frames) is visible */
+.elem.elemlast {
+  display: flex;
+  border-bottom: 1px solid #390f0f;
+}
+
+/* Ensure h1 is on the left and h4 on the right */
+.elem-content h1 {
+  text-align: left;
+  margin-right: auto;
+}
+
+.elem-content h4 {
+  text-align: right;
+  margin-left: auto;
+}
+
+/* Additional fixes for section-3 */
+.section-3 {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure all elems are visible */
+.elem {
+  display: flex;
+  width: 100%;
+  border-top: 1px solid #390f0f;
+  padding: 13px 0;
+  cursor: pointer;
+}
+
+/* Ensure the last elem has a bottom border */
+.elem.elemlast {
+  border-bottom: 1px solid #390f0f;
+}
+
+/* Fix for mobile view */
+@media (max-width: 767px) {
+  .section-3 {
+    height: auto !important;
+    min-height: auto !important;
+    padding-bottom: 0 !important;
+  }
+  
+  /* Make sure all elems are visible */
+  .elem {
+    display: flex !important;
+    visibility: visible !important;
+    position: relative;
+    padding: 1.5rem 0;
+  }
+  
+  /* Ensure the last elem is visible */
+  .elem.elemlast {
+    display: flex !important;
+    visibility: visible !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Fix for mobile view to prevent overlapping of text and arrows */
+  .elem-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-right: 2.5rem;
+  }
+  
+  /* Make h1 smaller on mobile */
+  .elem-content h1 {
+    font-size: 5vw !important;
+    max-width: 65%;
+    margin-right: 0.5rem;
+  }
+  
+  /* Make h4 smaller and ensure it doesn't wrap */
+  .elem-content h4 {
+    font-size: 3vw !important;
+    white-space: nowrap;
+  }
+  
+  /* Add arrow indicator to each elem */
+  .elem::after {
+    content: '';
+    position: absolute;
+    right: 0.8rem;
+    top: 50%;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-top: 2px solid #FF5D8F;
+    border-right: 2px solid #FF5D8F;
+    opacity: 1;
+    transform: translateY(-50%) rotate(45deg);
+    z-index: 5;
+    transition: all 0.3s ease;
+  }
+}
+
+/* Even smaller screens */
+@media (max-width: 480px) {
+  .elem-content h1 {
+    font-size: 4.8vw !important;
+    max-width: 60%;
+  }
+  
+  .elem-content h4 {
+    font-size: 3vw !important;
+  }
+  
+  .elem-content {
+    padding-right: 2.8rem;
+  }
+  
+  /* Add more space for the arrow */
+  .elem::after {
+    right: 1rem;
+  }
+}/* Fix 
+for tablet view (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Reduce section-3 height on tablet */
+  .section-3 {
+    height: auto !important;
+    min-height: auto !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Adjust spacing between elements */
+  .elem {
+    padding: 1.2rem 0;
+  }
+  
+  /* Ensure the last elem doesn't have too much space after it */
+  .elem.elemlast {
+    margin-bottom: 0 !important;
+  }
+  
+  /* Hide the responsive spacer on tablet or make it smaller */
+  .responsive-spacer {
+    height: 3vh !important;
+  }
+  
+  /* Make section-4 start closer to section-3 */
+  .section-4 {
+    margin-top: 0 !important;
+    padding-top: 1rem !important;
+  }
+}

@@ -1,0 +1,521 @@
+/* Mobile fixes for Home page */
+
+/* Fix for section-2 (marquee) */
+.section-2 {
+  position: relative;
+  padding: 1rem 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+.marquee-track {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform; 
+}
+
+/* Fix for section-3 (product categories) */
+.section-3 {
+  padding: 10vw 5vw 10vw 5vw;
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Fix for product images */
+.elem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #390f0f;
+  padding: 13px 0;
+  cursor: pointer;
+}
+
+.elem-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.product-image {
+  opacity: 0;
+  pointer-events: none;
+  height: 200%;
+  z-index: 999;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 10px 40px rgba(255, 93, 143, 0.7);
+  border-radius: 10px;
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 767px) {
+  /* Section-2 (marquee) */
+  .section-2 {
+    padding: 0.8rem 0;
+    height: auto;
+  }
+  
+  .section-2 .marquee-track {
+    font-size: 4.5vw;
+    letter-spacing: 0.5px;
+  }
+  
+  /* Section-3 (product categories) */
+  .section-3 {
+    padding: 6rem 1rem 3rem;
+  }
+  
+  .elem {
+    padding: 1rem 0;
+  }
+  
+  .elem h1 {
+    font-size: 6vw;
+    transition: color 0.3s ease;
+  }
+  
+  .elem h4 {
+    font-size: 3vw;
+  }
+  
+  /* Add visual feedback for touch interactions */
+  .elem:active h1 {
+    color: #FF5D8F;
+  }
+  
+  /* Improve image hover effect for mobile */
+  .elem img.product-image {
+    height: 200%;
+    width: auto;
+    max-width: none;
+    object-fit: contain;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 9999;
+    box-shadow: 0 10px 40px rgba(255, 93, 143, 0.7);
+  }
+  
+  /* Add touch indicator */
+  .elem::after {
+    content: '';
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-top: 2px solid #FF5D8F;
+    border-right: 2px solid #FF5D8F;
+    opacity: 0.5;
+    transform: translateY(-50%) rotate(45deg);
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .section-2 {
+    padding: 0.6rem 0;
+  }
+  
+  .section-2 .marquee-track {
+    font-size: 5vw;
+    letter-spacing: 0.3px;
+  }
+  
+  .section-3 {
+    padding: 5rem 0.8rem 2rem;
+  }
+  
+  .elem {
+    padding: 0.8rem 0;
+  }
+  
+  .elem h1 {
+    font-size: 7vw;
+  }
+  
+  .elem h4 {
+    font-size: 3.5vw;
+  }
+}
+
+/* Fix for section-2 gradient edges */
+.section-2::before,
+.section-2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  height: 100%;
+  z-index: 10;
+}
+
+.section-2::before {
+  left: 0;
+  background: linear-gradient(to right, #ffedf3, transparent);
+}
+
+.section-2::after {
+  right: 0;
+  background: linear-gradient(to left, #ffedf3, transparent);
+}
+
+@media (max-width: 767px) {
+  .section-2::before,
+  .section-2::after {
+    width: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-2::before,
+  .section-2::after {
+    width: 20px;
+  }
+}
+
+/* Fix for mobile touch feedback */
+@media (max-width: 767px) {
+  .elem {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .elem::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 93, 143, 0.05);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    z-index: -1;
+  }
+  
+  .elem:active::before {
+    transform: scaleX(1);
+  }
+  
+  .elem-content {
+    padding: 0.5rem 1.5rem 0.5rem 0;
+  }
+}/* K
+eep images outside their container on mobile */
+@media (max-width: 767px) {
+  .section-3 {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .elem {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Ensure images appear on top of everything */
+  .product-image {
+    z-index: 999;
+    pointer-events: none;
+    transform-origin: center;
+  }
+  
+  /* Prevent scrolling when image is shown */
+  body.image-active {
+    overflow: hidden;
+  }
+  
+  /* Ensure the image is not constrained by its parent */
+  .elem {
+    overflow: visible !important;
+  }
+}/* Secti
+on-4 (Gallery) Responsive Styles */
+@media (max-width: 1024px) {
+  /* Tablet styles */
+  .section-4 {
+    height: auto;
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+  
+  .section-4 .container {
+    height: 90vh;
+  }
+  
+  .section-4 .gallery {
+    width: 180vw;
+    height: 180vh;
+    padding: 5em;
+  }
+  
+  .section-4 .item {
+    width: 25vw;
+    height: 40vh;
+  }
+  
+  .section-4 h1 {
+    font-size: 2.5vw;
+    padding: 0.8rem 1.5rem;
+  }
+  
+  /* Adjust decorative elements for tablet */
+  .section-4 img[src*="rainbow"] {
+    width: 6vw;
+    left: 10vw;
+  }
+  
+  .section-4 img[src*="ipad"] {
+    width: 8vw;
+    right: 10vw;
+  }
+  
+  .section-4 img[src*="paints"] {
+    width: 12vw;
+    right: 40vw;
+  }
+  
+  .section-4 img[src*="butterfly"] {
+    width: 4vw;
+    right: 40vw;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Mobile styles */
+  .section-4 {
+    height: auto;
+    min-height: 100vh;
+    padding: 1rem 0;
+  }
+  
+  .section-4 .container {
+    height: 80vh;
+  }
+  
+  .section-4 .gallery {
+    width: 150vw;
+    height: 150vh;
+    padding: 3em;
+  }
+  
+  .section-4 .row {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+  
+  .section-4 .row:nth-child(2) {
+    justify-content: center;
+  }
+  
+  .section-4 .item {
+    width: 70vw;
+    height: 25vh;
+  }
+  
+  .section-4 h1 {
+    font-size: 5vw;
+    padding: 0.6rem 1.2rem;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  /* Adjust decorative elements for mobile */
+  .section-4 img[src*="rainbow"] {
+    width: 8vw;
+    left: 5vw;
+    top: 30vw;
+  }
+  
+  .section-4 img[src*="ipad"] {
+    width: 10vw;
+    right: 5vw;
+    top: 30vw;
+  }
+  
+  .section-4 img[src*="paints"] {
+    width: 15vw;
+    right: 30vw;
+    top: 5vw;
+  }
+  
+  .section-4 img[src*="butterfly"] {
+    width: 6vw;
+    right: 30vw;
+    bottom: 5vw;
+  }
+  
+  /* Disable mouse-move effect on mobile */
+  .section-4 .gallery {
+    transform: translate(-50%, -50%) !important;
+    transition: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Small mobile styles */
+  .section-4 .item {
+    width: 80vw;
+    height: 22vh;
+  }
+  
+  .section-4 h1 {
+    font-size: 6vw;
+    padding: 0.5rem 1rem;
+  }
+  
+  /* Further adjust decorative elements */
+  .section-4 img[src*="rainbow"],
+  .section-4 img[src*="ipad"] {
+    opacity: 0.5;
+  }
+  
+  .section-4 img[src*="paints"] {
+    width: 18vw;
+    opacity: 0.5;
+  }
+  
+  .section-4 img[src*="butterfly"] {
+    width: 7vw;
+    opacity: 0.5;
+  }
+  
+  /* Remove extra space */
+  .section-4 + div.h-15vh {
+    height: 5vh !important;
+  }
+}
+
+/* Landscape mode adjustments */
+@media (max-height: 500px) and (orientation: landscape) {
+  .section-4 {
+    height: auto;
+    min-height: 120vh;
+  }
+  
+  .section-4 .container {
+    height: 110vh;
+  }
+  
+  .section-4 .item {
+    height: 60vh;
+    width: 30vw;
+  }
+  
+  .section-4 .row {
+    flex-direction: row;
+  }
+  
+  /* Hide some decorative elements in landscape */
+  .section-4 img[src*="rainbow"],
+  .section-4 img[src*="butterfly"] {
+    display: none;
+  }
+}
+
+/* Fix for the gallery section to ensure it's properly contained */
+.gallery-section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ensure the gallery title is always visible */
+.gallery-section h1 {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  white-space: nowrap;
+}/* Remove e
+xtra blank space */
+@media (max-width: 767px) {
+  .responsive-spacer {
+    height: 5vh !important;
+  }
+  
+  /* Adjust spacing between sections */
+  .section-3 + .responsive-spacer {
+    height: 2vh !important;
+  }
+  
+  /* Ensure proper spacing between sections */
+  .section-4 {
+    margin-top: 0;
+    padding-top: 0;
+  }
+  
+  /* Adjust gallery container height */
+  .gallery-container {
+    height: auto !important;
+    min-height: 90vh;
+  }
+}
+
+/* Optimize gallery for different screen sizes */
+@media (max-width: 767px) {
+  /* Make gallery items fill available space */
+  .gallery {
+    padding: 2em !important;
+  }
+  
+  .row {
+    margin-bottom: 1rem;
+  }
+  
+  /* Ensure videos play properly on mobile */
+  .video-element {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Improve hover effect for mobile */
+  .item:hover {
+    transform: scale(1.02) !important;
+  }
+  
+  /* Make video name more readable */
+  .videoName {
+    font-size: 18px !important;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+  }
+}/* Fix fo
+r tablet view - reduce space after section-3 */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Reduce section-3 height */
+  .section-3 {
+    height: auto !important;
+    min-height: auto !important;
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  /* Make responsive spacer smaller */
+  .responsive-spacer {
+    height: 3vh !important;
+  }
+  
+  /* Adjust section-4 to start closer to section-3 */
+  .section-4 {
+    margin-top: 0 !important;
+    padding-top: 1rem !important;
+  }
+  
+  /* Ensure gallery title is positioned correctly */
+  .gallery-section h1 {
+    top: 1rem !important;
+  }
+}

@@ -1,0 +1,189 @@
+/* Footer Responsive Styles */
+
+/* Base styles */
+.footer-responsive {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Logo and tagline */
+.footer-logo {
+  transition: all 0.3s ease;
+}
+
+.footer-tagline {
+  transition: all 0.3s ease;
+}
+
+/* Quick links section */
+.quick-links-title {
+  transition: all 0.3s ease;
+}
+
+.quick-links-container {
+  transition: all 0.3s ease;
+}
+
+/* Contact section */
+.contact-title {
+  transition: all 0.3s ease;
+}
+
+.contact-container {
+  transition: all 0.3s ease;
+}
+
+/* Desktop styles (default) */
+@media (min-width: 1025px) {
+  /* Default styles are already in the component */
+}
+
+/* Tablet styles */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .footer-responsive .footer-main {
+    padding: 2rem 1.5rem !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+  }
+
+  .footer-responsive .div1 {
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .footer-responsive .footer-logo {
+    width: 25vw !important;
+  }
+
+  .footer-responsive .tagline {
+    font-size: 5vw !important;
+  }
+
+  .footer-responsive .div2,
+  .footer-responsive .div3 {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer-responsive .div2 h3,
+  .footer-responsive .div3 h3 {
+    font-size: 3vw !important;
+    padding-top: 0.5rem !important;
+  }
+
+  .footer-responsive .quick-links-container {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    font-size: 2.5vw !important;
+  }
+
+  .footer-responsive .div3 .contact-container {
+    align-items: center !important;
+    font-size: 2.5vw !important;
+  }
+
+  .footer-responsive .div3 img {
+    width: 3vw !important;
+  }
+
+  .footer-responsive .div3 button {
+    font-size: 2.5vw !important;
+  }
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+  .footer-responsive .footer-main {
+    padding: 1.5rem 1rem !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+  }
+
+  .footer-responsive .div1 {
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .footer-responsive .footer-logo {
+    width: 40vw !important;
+  }
+
+  .footer-responsive .tagline {
+    font-size: 7vw !important;
+  }
+
+  .footer-responsive .div2,
+  .footer-responsive .div3 {
+    width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer-responsive .div2 h3,
+  .footer-responsive .div3 h3 {
+    font-size: 4vw !important;
+    padding-top: 0.5rem !important;
+  }
+
+  .footer-responsive .quick-links-container {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    font-size: 3.5vw !important;
+  }
+
+  .footer-responsive .div3 .contact-container {
+    align-items: center !important;
+    font-size: 3.5vw !important;
+  }
+
+  .footer-responsive .div3 img {
+    width: 5vw !important;
+  }
+
+  .footer-responsive button {
+    font-size: 3vw;
+  }
+}
+
+/* Small mobile styles */
+@media (max-width: 480px) {
+  .footer-responsive .footer-main {
+    padding: 1rem 0.5rem !important;
+  }
+
+  .footer-responsive .footer-logo {
+    width: 50vw !important;
+  }
+
+  .footer-responsive .tagline {
+    font-size: 8vw !important;
+  }
+
+  .footer-responsive .div2 h3,
+  .footer-responsive .div3 h3 {
+    font-size: 5vw !important;
+  }
+
+  .footer-responsive .quick-links-container {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    font-size: 4vw !important;
+  }
+
+  .footer-responsive .div3 .contact-container {
+    font-size: 4vw !important;
+  }
+
+  .footer-responsive .div3 img {
+    width: 6vw !important;
+  }
+
+  .footer-responsive .copyright {
+    font-size: 0.8rem !important;
+  }
+}

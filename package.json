@@ -1,5 +1,5 @@
 {
-  "name": "mruchabeauty",
+  "name": "liveInPaints",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -18,6 +18,7 @@
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-form-hook": "^0.0.1",
+    "react-player": "^3.3.1",
     "react-router-dom": "^7.6.3",
     "react-toastify": "^11.0.5",
     "tailwindcss": "^4.1.11"

@@ -1,0 +1,379 @@
+/* Navbar.css - Responsive styles for the navbar */
+
+/* Base navbar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.75rem 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99;
+  transition: transform 0.5s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 15px -1px rgba(255, 93, 143, 0.15);
+  font-family: "Playfair Display", serif;
+}
+
+.navbar.hidden {
+  transform: translateY(-100%);
+}
+
+.navbar.visible {
+  transform: translateY(0);
+}
+
+/* Logo styles */
+.navbar-logo {
+  font-size: 2vw;
+  color: #390f0f;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+/* Desktop navigation menu */
+.navbar-menu {
+  display: flex;
+  gap: 2.5rem;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: 0.5rem 2.5rem;
+  border-radius: 1rem;
+  font-weight: 500;
+  font-family: poppins;
+}
+
+.navbar-menu a {
+  font-size: 1.1vw;
+  color: #390f0f;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu a:hover,
+.navbar-menu a.active {
+  color: #ff5d8f;
+}
+
+/* Right side icons and login */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.navbar-icon {
+  width: 2rem;
+  height: 2rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navbar-icon img {
+  width: 100%;
+  height: auto;
+}
+
+.navbar-icon:hover {
+  transform: scale(1.1);
+}
+
+.navbar-icon:active {
+  transform: scale(0.95);
+}
+
+.navbar-login-btn {
+  padding: 0.5rem 1.5rem;
+  color: #ff5d8f;
+  border: 2px solid #ff5d8f;
+  border-radius: 1.8rem;
+  transition: all 0.3s ease;
+  font-family: "Poppins", serif;
+  font-weight: 500;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1rem; /* Explicit font size for desktop */
+}
+
+.navbar-login-btn:hover {
+  color: white;
+  background-color: #ff5d8f;
+}
+
+.navbar-login-btn:active {
+  transform: scale(0.95);
+}
+
+/* Hamburger menu button - hidden by default */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 2rem;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 60;
+}
+
+.hamburger-line {
+  width: 2rem;
+  height: 0.25rem;
+  background: #390f0f;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburger-btn.open .hamburger-line:first-child {
+  transform: rotate(45deg);
+  background-color: #ff5d8f;
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger-btn.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg);
+  background-color: #ff5d8f;
+}
+
+/* Mobile menu - hidden by default */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 6rem 2rem 2rem;
+  transition: transform 0.3s ease;
+  z-index: 55;
+  box-shadow: 0 4px 15px -1px rgba(255, 93, 143, 0.15);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  overflow-y: auto;
+}
+
+.mobile-menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.mobile-menu-links a {
+  font-size: 1.25rem;
+  color: #390f0f;
+  text-decoration: none;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 93, 143, 0.1);
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.mobile-menu-links a:hover,
+.mobile-menu-links a.active {
+  color: #ff5d8f;
+}
+
+.mobile-menu-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.mobile-menu-icons {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.mobile-menu-icons .navbar-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-icons .navbar-icon:hover,
+.mobile-menu-icons .navbar-icon:active {
+  transform: scale(1.2);
+}
+
+.mobile-icon img {
+  width: 100%;
+  height: auto;
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-login {
+  width: 100%;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.mobile-menu-login button {
+  width: 100%;
+  max-width: 200px;
+  text-align: center;
+  padding: 0.75rem;
+}
+
+/* Overlay for mobile menu */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 54;
+}
+
+/* Tablet Styles (768px - 1024px) */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1.5rem 4%;
+  }
+
+  .navbar-logo {
+    font-size: 2.5vw;
+  }
+
+  .navbar-menu a {
+    font-size: 1.3vw;
+  }
+
+  .navbar-menu {
+    gap: 2rem;
+    padding: 0.5rem 2rem;
+  }
+}
+
+/* Mobile Styles (up to 767px) */
+@media (max-width: 767px) {
+  .navbar {
+    padding: 1rem 4%;
+  }
+
+  .navbar-logo {
+    font-size: 1.5rem;
+  }
+
+  /* Hide desktop menu */
+  .navbar-menu {
+    display: none;
+  }
+
+  /* Show hamburger button */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  /* Hide desktop actions on mobile */
+  .navbar-actions {
+    display: none;
+  }
+
+  .mobile-menu-links a {
+    font-size: 1.2rem;
+  }
+}
+
+/* Small Mobile Styles (up to 480px) */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 1rem 3%;
+  }
+
+  .navbar-logo {
+    font-size: 1.25rem;
+  }
+
+  .mobile-menu {
+    padding: 5rem 1.5rem 1.5rem;
+  }
+
+  .mobile-menu-links a {
+    font-size: 1.1rem;
+    padding: 0.6rem 0;
+  }
+
+  /* Increase login button text size on mobile */
+  .navbar-login-btn,
+  .mobile-menu-login button {
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    font-family: "Poppins", sans-serif;
+  }
+
+  /* Keep cart and account icons consistent size */
+  .mobile-menu-icons .navbar-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+/* Enhanced mobile icon styles */
+@media (max-width: 767px) {
+  .mobile-icon {
+    position: relative;
+  }
+
+  .mobile-icon::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(255, 93, 143, 0.1);
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-icon:hover::after,
+  .mobile-icon:active::after {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  /* Add a subtle animation for better feedback */
+  .mobile-icon:active img {
+    transform: scale(0.9);
+  }
+}
+
+/* Improve touch target size for mobile */
+@media (max-width: 480px) {
+  .mobile-menu-icons {
+    gap: 3rem;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-menu-icons .navbar-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+}
