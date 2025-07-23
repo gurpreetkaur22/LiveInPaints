@@ -563,7 +563,7 @@ const Home = () => {
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center h-full py-16 px-4">
           {/* Left side - Image with decorative elements */}
           <motion.div
-            className="md:w-1/2 relative mb-10 md:mb-0"
+            className="lg:pl-15 lg:w-1/2 relative mb-10 md:mb-0"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
@@ -611,7 +611,7 @@ const Home = () => {
 
           {/* Right side - Text content */}
           <motion.div
-            className="right md:w-1/2 md:pl-16 flex flex-col items-center md:items-center text-center md:text-left"
+            className="right md:w-1/2 flex flex-col items-center md:items-center text-center md:text-left"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
