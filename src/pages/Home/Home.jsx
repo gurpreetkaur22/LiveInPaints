@@ -551,10 +551,10 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="h-[15vh] lg:h-[15vh] md:h-[3vh] bg-[#ffedf3] responsive-spacer hidden md:block"></div>
+      <div className="h-[5vh] lg:h-[5vh] md:h-[2vh] bg-[#ffedf3] responsive-spacer hidden md:block"></div>
 
-      <div className="section-4">
-        <div className="gallery-container">
+      <div className="section-4 w-full max-w-[100vw]">
+        <div className="gallery-container w-full">
           <Gallery />
         </div>
       </div>
