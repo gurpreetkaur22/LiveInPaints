@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import painting from "/images/hare.webp";
@@ -30,6 +30,10 @@ const Home = () => {
   // Navigation hook
   const navigate = useNavigate();
 
+  // State for mobile dropdown functionality
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
   // Refs for scroll animations
   const section1Ref = useRef(null);
 
@@ -38,15 +42,62 @@ const Home = () => {
   const leftBrushX = useTransform(scrollY, [0, 500], [0, -150]);
   const rightBrushX = useTransform(scrollY, [0, 500], [0, 150]);
   const ipadPencilX = useTransform(scrollY, [0, 500], [0, -100]);
-  const ipadPencilY = useTransform(scrollY, [0, 500], [0, 80]);
   const ipadPencilRotate = useTransform(scrollY, [0, 500], [-5, 15]);
   const lappyX = useTransform(scrollY, [0, 500], [0, 100]);
-  const lappyY = useTransform(scrollY, [0, 500], [0, 80]);
   const lappyRotate = useTransform(scrollY, [0, 500], [5, -15]);
   const leftBrushRotate = useTransform(scrollY, [0, 500], [-15, -45]);
   const rightBrushRotate = useTransform(scrollY, [0, 500], [15, 45]);
   const paletteY = useTransform(scrollY, [0, 500], [0, 100]);
   const paletteOpacity = useTransform(scrollY, [0, 300], [0.8, 0]);
+  // Check if device is mobile/tablet
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 1024);
+    };
+    
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  // Handle dropdown toggle for mobile/tablet
+  const handleDropdownToggle = (index, event) => {
+    if (event) {
+      event.stopPropagation(); // Prevent event bubbling
+    }
+    if (isMobile) {
+      const newActiveDropdown = activeDropdown === index ? null : index;
+      console.log('Toggling dropdown from', activeDropdown, 'to', newActiveDropdown);
+      setActiveDropdown(newActiveDropdown);
+      
+      // Force update the DOM
+      setTimeout(() => {
+        const dropdown = document.querySelector(`.mobile-image-dropdown`);
+        if (dropdown) {
+          dropdown.style.display = 'flex';
+          dropdown.style.opacity = '1';
+        }
+      }, 10);
+    }
+  };
+
+  // Handle navigation
+  const handleElemClick = (category, index) => {
+    if (!isMobile) {
+      // On desktop, direct navigation
+      navigate(`/products?category=${category}`);
+    }
+    // On mobile, do nothing when clicking the main area
+  };
+  
+  // Handle arrow click specifically
+  const handleArrowClick = (index, event) => {
+    event.stopPropagation(); // Prevent triggering elem click
+    console.log('Arrow clicked for index:', index, 'isMobile:', isMobile, 'activeDropdown:', activeDropdown);
+    handleDropdownToggle(index, event);
+  };
+
   useEffect(() => {
     gsap.to(".marquee-track", {
       xPercent: -50,
@@ -320,7 +371,7 @@ const Home = () => {
       <div className="section-3 bg-gradient-to-b from-[#fff] to-[#ffedf3] lg:h-screen md:h-auto playfair-display-medium">
         <div
           className="elem"
-          onClick={() => navigate("/products?category=paintings")}
+          onClick={() => handleElemClick("paintings", 0)}
         >
           <img
             draggable="false"
@@ -331,11 +382,26 @@ const Home = () => {
           <div className="elem-content">
             <h1>Paintings</h1>
             <h4>Starts from ₹299</h4>
+            {isMobile && (
+              <div 
+                className={`dropdown-arrow ${activeDropdown === 0 ? 'active' : ''}`}
+                onClick={(e) => handleArrowClick(0, e)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
           </div>
+          {isMobile && activeDropdown === 0 && (
+            <div className="mobile-image-dropdown">
+              <img src={painting} alt="Paintings" className="dropdown-image" />
+            </div>
+          )}
         </div>
         <div
           className="elem"
-          onClick={() => navigate("/products?category=illustrations")}
+          onClick={() => handleElemClick("illustrations", 1)}
         >
           <img
             draggable="false"
@@ -346,11 +412,26 @@ const Home = () => {
           <div className="elem-content">
             <h1>Custom Illustrations</h1>
             <h4>Starts from ₹499</h4>
+            {isMobile && (
+              <div 
+                className={`dropdown-arrow ${activeDropdown === 1 ? 'active' : ''}`}
+                onClick={(e) => handleArrowClick(1, e)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
           </div>
+          {isMobile && activeDropdown === 1 && (
+            <div className="mobile-image-dropdown">
+              <img src={illus} alt="Custom Illustrations" className="dropdown-image" />
+            </div>
+          )}
         </div>
         <div
           className="elem"
-          onClick={() => navigate("/products?category=bookmarks")}
+          onClick={() => handleElemClick("bookmarks", 2)}
         >
           <img
             draggable="false"
@@ -361,11 +442,26 @@ const Home = () => {
           <div className="elem-content">
             <h1>Cute Bookmarks</h1>
             <h4>Starts from ₹99</h4>
+            {isMobile && (
+              <div 
+                className={`dropdown-arrow ${activeDropdown === 2 ? 'active' : ''}`}
+                onClick={(e) => handleArrowClick(2, e)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
           </div>
+          {isMobile && activeDropdown === 2 && (
+            <div className="mobile-image-dropdown">
+              <img src={bookmark} alt="Cute Bookmarks" className="dropdown-image" />
+            </div>
+          )}
         </div>
         <div
           className="elem"
-          onClick={() => navigate("/products?category=walletcards")}
+          onClick={() => handleElemClick("walletcards", 3)}
         >
           <img
             draggable="false"
@@ -376,11 +472,26 @@ const Home = () => {
           <div className="elem-content">
             <h1>Wallet Cards</h1>
             <h4>Starts from ₹199</h4>
+            {isMobile && (
+              <div 
+                className={`dropdown-arrow ${activeDropdown === 3 ? 'active' : ''}`}
+                onClick={(e) => handleArrowClick(3, e)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
           </div>
+          {isMobile && activeDropdown === 3 && (
+            <div className="mobile-image-dropdown">
+              <img src={walletcard} alt="Wallet Cards" className="dropdown-image" />
+            </div>
+          )}
         </div>
         <div
           className="elem"
-          onClick={() => navigate("/products?category=businesscards")}
+          onClick={() => handleElemClick("businesscards", 4)}
         >
           <img
             draggable="false"
@@ -391,11 +502,26 @@ const Home = () => {
           <div className="elem-content">
             <h1>Business Cards</h1>
             <h4>Starts from ₹199</h4>
+            {isMobile && (
+              <div 
+                className={`dropdown-arrow ${activeDropdown === 4 ? 'active' : ''}`}
+                onClick={(e) => handleArrowClick(4, e)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
           </div>
+          {isMobile && activeDropdown === 4 && (
+            <div className="mobile-image-dropdown">
+              <img src={businesscard} alt="Business Cards" className="dropdown-image" />
+            </div>
+          )}
         </div>
         <div
           className="elem elemlast"
-          onClick={() => navigate("/products?category=tileframes")}
+          onClick={() => handleElemClick("tileframes", 5)}
         >
           <img
             draggable="false"
@@ -406,7 +532,22 @@ const Home = () => {
           <div className="elem-content">
             <h1>Tile Frames</h1>
             <h4>Starts from ₹599</h4>
+            {isMobile && (
+              <div 
+                className={`dropdown-arrow ${activeDropdown === 5 ? 'active' : ''}`}
+                onClick={(e) => handleArrowClick(5, e)}
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </div>
+            )}
           </div>
+          {isMobile && activeDropdown === 5 && (
+            <div className="mobile-image-dropdown">
+              <img src={tile} alt="Tile Frames" className="dropdown-image" />
+            </div>
+          )}
         </div>
       </div>
 
@@ -418,7 +559,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="section-5 w-full min-h-screen bg-gradient-to-r from-[#FFF5F8] to-white md:bg-[#ffedf3]">
+      <div className="section-5 w-full min-h-screen md:bg-[#ffedf3]">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-center h-full py-16 px-4">
           {/* Left side - Image with decorative elements */}
           <motion.div
