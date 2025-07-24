@@ -61,7 +61,20 @@ export function CartProvider({ children }) {
 
   // Remove from cart
   const removeFromCart = (productId) => {
-    setCartItems(prevItems => prevItems.filter(item => item.id !== productId));
+    setCartItems(prevItems => {
+      const itemToRemove = prevItems.find(item => item.id === productId);
+      if (itemToRemove) {
+        toast.info(`${itemToRemove.name} removed from cart`, {
+          position: "bottom-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+      }
+      return prevItems.filter(item => item.id !== productId);
+    });
   };
 
   // Update quantity
@@ -82,6 +95,17 @@ export function CartProvider({ children }) {
 
   // Clear cart
   const clearCart = () => {
+    const itemCount = cartItems.length;
+    if (itemCount > 0) {
+      toast.warning(`Cart cleared! ${itemCount} item${itemCount > 1 ? 's' : ''} removed`, {
+        position: "bottom-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+    }
     setCartItems([]);
   };
 

@@ -1,6 +1,244 @@
+import { nanoid } from 'nanoid';
+
 export const products = [
   {
-    id: "1",
+    id: nanoid(),
+    name: "Modern Family Portrait",
+    category: "illustrations",
+    price: 699,
+    originalPrice: 899,
+    image: "/images/NewFamilyIllus.webp",
+    images: [
+      "/images/NewFamilyIllus.webp",
+      "/images/illusFam.webp",
+      "/images/illus1.webp",
+    ],
+    description:
+      "Contemporary family illustration with modern artistic style. Perfect for capturing your family's unique personality and bond.",
+    features: [
+      "Modern artistic style",
+      "High-resolution digital artwork",
+      "Multiple family members supported",
+      "Custom background options",
+      "Print-ready formats included",
+    ],
+    customizationOptions: {
+      complexity: [
+        { name: "Simple (2-3 people)", price: 699 },
+        { name: "Medium (4-6 people)", price: 999 },
+        { name: "Large Family (7+ people)", price: 1399 },
+      ],
+      style: [
+        { name: "Modern Style", price: 0 },
+        { name: "Classic Style", price: 150 },
+        { name: "Abstract Style", price: 200 },
+      ],
+    },
+    inStock: true,
+  },
+  {
+    id: nanoid(),
+    name: "Premium Dog Portrait",
+    category: "illustrations",
+    price: 449,
+    originalPrice: 599,
+    image: "/images/NewDogIllus.webp",
+    images: [
+      "/images/NewDogIllus.webp",
+      "/images/petIllus.webp",
+      "/images/illus3.webp",
+    ],
+    description:
+      "Beautiful custom dog portraits that capture your furry friend's personality with artistic flair and attention to detail.",
+    features: [
+      "Professional pet artist",
+      "Detailed fur textures",
+      "Custom pose options",
+      "Background customization",
+      "High-quality digital files",
+    ],
+    customizationOptions: {
+      pets: [
+        { name: "Single Dog", price: 449 },
+        { name: "Two Dogs", price: 649 },
+        { name: "Multiple Dogs (3+)", price: 849 },
+      ],
+      background: [
+        { name: "Simple Background", price: 0 },
+        { name: "Nature Background", price: 100 },
+        { name: "Custom Background", price: 200 },
+      ],
+    },
+    inStock: true,
+  },
+  {
+    id: nanoid(),
+    name: "Contemporary Illustration",
+    category: "illustrations",
+    price: 549,
+    image: "/images/NewIllus.webp",
+    images: [
+      "/images/NewIllus.webp",
+      "/images/illus1.webp",
+      "/images/illus2.webp",
+    ],
+    description:
+      "Modern contemporary illustrations with unique artistic vision. Perfect for personal projects, gifts, or home decoration.",
+    features: [
+      "Contemporary art style",
+      "Original creative design",
+      "High-resolution artwork",
+      "Multiple format options",
+      "Commercial usage rights",
+    ],
+    customizationOptions: {
+      complexity: [
+        { name: "Simple Design", price: 549 },
+        { name: "Detailed Design", price: 749 },
+        { name: "Complex Design", price: 949 },
+      ],
+      format: [
+        { name: "Digital Only", price: 0 },
+        { name: "Print Ready", price: 100 },
+        { name: "Multiple Formats", price: 200 },
+      ],
+    },
+    inStock: true,
+  },
+  {
+    id: nanoid(),
+    name: "Sacred Art Illustration",
+    category: "illustrations",
+    price: 499,
+    image: "/images/NewReligiousIllus.webp",
+    images: [
+      "/images/NewReligiousIllus.webp",
+      "/images/illusReligious.webp",
+      "/images/illusReligious2.webp",
+    ],
+    description:
+      "Respectful and beautiful religious artwork created with devotion and artistic excellence for spiritual occasions.",
+    features: [
+      "Respectful religious themes",
+      "Traditional artistic approach",
+      "Custom spiritual symbols",
+      "Multiple religious traditions",
+      "Ceremonial quality artwork",
+    ],
+    customizationOptions: {
+      tradition: [
+        { name: "Christian Art", price: 499 },
+        { name: "Hindu Art", price: 499 },
+        { name: "Sikh Art", price: 499 },
+        { name: "Islamic Art", price: 499 },
+        { name: "Buddhist Art", price: 499 },
+      ],
+      complexity: [
+        { name: "Simple Design", price: 0 },
+        { name: "Detailed Design", price: 200 },
+        { name: "Elaborate Design", price: 400 },
+      ],
+    },
+    inStock: true,
+  },
+  {
+    id: nanoid(),
+    name: "Designer Bookmark",
+    category: "bookmarks",
+    price: 89,
+    image: "/images/NewBookmakr.webp",
+    images: [
+      "/images/NewBookmakr.webp",
+      "/images/bookmark1.webp",
+      "/images/bookmark2.webp",
+    ],
+    description:
+      "Elegant designer bookmarks with premium finish and personalized touches for the discerning book lover.",
+    features: [
+      "Premium designer quality",
+      "Personalized customization",
+      "Durable materials",
+      "Elegant finish",
+      "Perfect gift option",
+    ],
+    customizationOptions: {
+      design: [
+        { name: "Minimalist Design", price: 89 },
+        { name: "Floral Design", price: 109 },
+        { name: "Custom Design", price: 129 },
+      ],
+      personalization: [
+        { name: "Name Only", price: 0 },
+        { name: "Name + Quote", price: 20 },
+        { name: "Full Custom Text", price: 40 },
+      ],
+    },
+    inStock: true,
+  },
+  {
+    id: nanoid(),
+    name: "Executive Business Card",
+    category: "cards",
+    price: 249,
+    originalPrice: 299,
+    image: "/images/NewBusinesscard.webp",
+    images: ["/images/NewBusinesscard.webp", "/images/businesscard.webp"],
+    description:
+      "Premium executive business cards with sophisticated design and high-quality materials for professional networking.",
+    features: [
+      "Executive quality design",
+      "Premium cardstock material",
+      "Professional typography",
+      "Multiple finish options",
+      "Fast turnaround time",
+    ],
+    customizationOptions: {
+      quantity: [
+        { name: "100 Cards", price: 249 },
+        { name: "250 Cards", price: 499 },
+        { name: "500 Cards", price: 899 },
+      ],
+      finish: [
+        { name: "Matte Premium", price: 0 },
+        { name: "Glossy Premium", price: 75 },
+        { name: "Luxury UV Coating", price: 150 },
+      ],
+    },
+    inStock: true,
+  },
+  {
+    id: nanoid(),
+    name: "Luxury Tile Frame",
+    category: "frames",
+    price: 699,
+    originalPrice: 899,
+    image: "/images/NewTileFrame.webp",
+    images: ["/images/NewTileFrame.webp", "/images/tile1.webp"],
+    description:
+      "Luxury ceramic tile frames with premium craftsmanship for displaying your most precious memories in style.",
+    features: [
+      "Luxury ceramic construction",
+      "Premium frame materials",
+      "Professional mounting system",
+      "Moisture and fade resistant",
+      "Custom sizing available",
+    ],
+    customizationOptions: {
+      size: [
+        { name: "8x8 inches", price: 699 },
+        { name: "10x10 inches", price: 899 },
+        { name: "12x12 inches", price: 1199 },
+      ],
+      frame: [
+        { name: "Classic Wood", price: 0 },
+        { name: "Premium Metal", price: 250 },
+        { name: "Luxury Gold", price: 500 },
+      ],
+    },
+    inStock: true,
+  },
+  {
+    id: nanoid(),
     name: "Custom Portrait Painting",
     category: "paintings",
     price: 299,
@@ -31,7 +269,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "2",
+    id: nanoid(),
     name: "Family Illustration",
     category: "illustrations",
     price: 599,
@@ -66,7 +304,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "3",
+    id: nanoid(),
     name: "Pet Portrait Illustration",
     category: "illustrations",
     price: 399,
@@ -96,7 +334,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "4",
+    id: nanoid(),
     name: "Religious Art Illustration",
     category: "illustrations",
     price: 449,
@@ -127,7 +365,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "5",
+    id: nanoid(),
     name: "Semi-Realistic Illustration",
     category: "illustrations",
     price: 549,
@@ -191,7 +429,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "7",
+    id: nanoid(),
     name: "Premium Bookmark",
     category: "bookmarks",
     price: 79,
@@ -221,7 +459,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "8",
+    id: nanoid(),
     name: "Birthday Card Design",
     category: "cards",
     price: 129,
@@ -251,7 +489,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "9",
+    id: nanoid(),
     name: "Premium Wallet Card",
     category: "cards",
     price: 199,
@@ -280,7 +518,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "10",
+    id: nanoid(),
     name: "Business Card Design",
     category: "cards",
     price: 199,
@@ -311,7 +549,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "11",
+    id: nanoid(),
     name: "Memory Tile Frame",
     category: "frames",
     price: 599,
@@ -341,7 +579,7 @@ export const products = [
     inStock: true,
   },
   {
-    id: "12",
+    id: nanoid(),
     name: "Handmade Crochet Art",
     category: "crafts",
     price: 349,

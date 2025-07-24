@@ -1828,35 +1828,6 @@ e pink dropdown box horizontally */
   color: white !important;
 }
 
-/* CartSidebar */
-/* .plus-minus-btn {
-  color: #fff;
-  font-size: 1.5vw;
-}
-
-.proceed-btn {
-  color: #fff;
-}
-
-@media (max-width: 767px) {
-  .plus-minus-btn {
-    font-size: 6vw;
-  }
-  .proceed-btn,
-  .clear-cart-btn {
-    font-size: 4vw;
-  }
-}
-
-@media (max-width: 1024px) {
-  .plus-minus-btn {
-    font-size: 3vw;
-  }
-  .proceed-btn,
-  .clear-cart-btn {
-    font-size: 2vw;
-  }
-} */
 /* Force custom cursor on file inputs and their pseudo-elements */
 input[type="file"] {
   cursor: none !important;
@@ -1888,4 +1859,103 @@ a,
 /* Override any default cursor styles */
 * {
   cursor: none !important;
+}
+/* Custom Toast Styling for LiveInPaints */
+.Toastify__toast {
+  border-radius: 12px !important;
+  font-family: 'Poppins', sans-serif !important;
+  box-shadow: 0 4px 12px rgba(255, 93, 143, 0.15) !important;
+}
+
+.Toastify__toast--success {
+  background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%) !important;
+  color: white !important;
+  border-left: 4px solid #AD1457 !important;
+  font-weight: 500 !important;
+}
+
+.Toastify__toast--info {
+  background: linear-gradient(135deg, #2D0A0A 0%, #4A1515 100%) !important;
+  color: #FFFFFF !important;
+  border-left: 4px solid #FF5D8F !important;
+  font-weight: 500 !important;
+}
+
+.Toastify__toast--warning {
+  background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%) !important;
+  color: #BF360C !important;
+  border-left: 4px solid #FF6F00 !important;
+  font-weight: 600 !important;
+}
+
+.Toastify__toast--error {
+  background: linear-gradient(135deg, #D32F2F 0%, #B71C1C 100%) !important;
+  color: white !important;
+  border-left: 4px solid #8D0000 !important;
+  font-weight: 500 !important;
+}
+
+.Toastify__progress-bar--success {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.Toastify__progress-bar--info {
+  background: rgba(255, 93, 143, 0.8) !important;
+}
+
+.Toastify__progress-bar--warning {
+  background: rgba(191, 54, 12, 0.8) !important;
+}
+
+.Toastify__progress-bar--error {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+.Toastify__close-button {
+  color: currentColor !important;
+  opacity: 0.8 !important;
+  font-weight: bold !important;
+}
+
+.Toastify__close-button:hover {
+  opacity: 1 !important;
+  transform: scale(1.1) !important;
+}
+
+/* Custom cursor for toast elements */
+.Toastify__toast,
+.Toastify__close-button {
+  cursor: none !important;
+}/* Change
+ toast icons to white */
+.Toastify__toast--success .Toastify__toast-icon {
+  color: white !important;
+}
+
+.Toastify__toast--success .Toastify__toast-icon svg {
+  fill: white !important;
+}
+
+.Toastify__toast--info .Toastify__toast-icon {
+  color: white !important;
+}
+
+.Toastify__toast--info .Toastify__toast-icon svg {
+  fill: white !important;
+}
+
+.Toastify__toast--warning .Toastify__toast-icon {
+  color: #BF360C !important;
+}
+
+.Toastify__toast--warning .Toastify__toast-icon svg {
+  fill: #BF360C !important;
+}
+
+.Toastify__toast--error .Toastify__toast-icon {
+  color: white !important;
+}
+
+.Toastify__toast--error .Toastify__toast-icon svg {
+  fill: white !important;
 }

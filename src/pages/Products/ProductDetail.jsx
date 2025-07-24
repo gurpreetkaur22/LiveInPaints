@@ -21,6 +21,9 @@ function ProductDetail() {
   const [customText, setCustomText] = useState('');
 
   useEffect(() => {
+    // Scroll to top when component mounts or product changes
+    window.scrollTo(0, 0);
+    
     const foundProduct = getProductById(id);
     if (foundProduct) {
       console.log('Found product:', foundProduct.name, 'Price:', foundProduct.price);
