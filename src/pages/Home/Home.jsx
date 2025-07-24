@@ -515,7 +515,7 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className="elem" onClick={() => handleElemClick("walletcards", 3)}>
+        <div className="elem" onClick={() => handleElemClick("cards", 3)}>
           <img
             draggable="false"
             src={walletcard}
@@ -562,7 +562,7 @@ const Home = () => {
         </div>
         <div
           className="elem"
-          onClick={() => handleElemClick("businesscards", 4)}
+          onClick={() => handleElemClick("cards", 4)}
         >
           <img
             draggable="false"
@@ -610,7 +610,7 @@ const Home = () => {
         </div>
         <div
           className="elem elemlast"
-          onClick={() => handleElemClick("tileframes", 5)}
+          onClick={() => handleElemClick("frames", 5)}
         >
           <img
             draggable="false"

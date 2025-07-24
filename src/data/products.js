@@ -3,6 +3,36 @@ import { nanoid } from 'nanoid';
 export const products = [
   {
     id: nanoid(),
+    name: "Premium Custom Painting",
+    category: "paintings",
+    price: 399,
+    originalPrice: 549,
+    image: "/images/NewPainting.webp",
+    images: ["/images/NewPainting.webp", "/images/hare.webp", "/images/butterfly.webp"],
+    description: "Stunning custom painting created with professional techniques and premium materials. Transform your space with personalized artwork.",
+    features: [
+      "Professional artist creation",
+      "Premium canvas and paints",
+      "Custom design options",
+      "High-quality finish",
+      "Ready-to-hang mounting"
+    ],
+    customizationOptions: {
+      sizes: [
+        { name: "Small (8x10)", price: 399 },
+        { name: "Medium (12x16)", price: 599 },
+        { name: "Large (16x20)", price: 799 }
+      ],
+      style: [
+        { name: "Realistic", price: 0 },
+        { name: "Abstract", price: 150 },
+        { name: "Impressionist", price: 200 }
+      ]
+    },
+    inStock: true
+  },
+  {
+    id: nanoid(),
     name: "Modern Family Portrait",
     category: "illustrations",
     price: 699,

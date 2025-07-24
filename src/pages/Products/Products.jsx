@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useProducts } from "../../contexts";
+import { useSearchParams } from "react-router-dom";
 import ProductCard from "../../components/products/ProductCard";
 
 function Products() {
@@ -10,6 +11,21 @@ function Products() {
     setSelectedCategory,
     getFilteredProducts,
   } = useProducts();
+
+  const [searchParams] = useSearchParams();
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Handle category parameter from URL
+  useEffect(() => {
+    const categoryFromUrl = searchParams.get("category");
+    if (categoryFromUrl && categories.includes(categoryFromUrl)) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [searchParams, categories, setSelectedCategory]);
 
   const filteredProducts = getFilteredProducts();
 
