@@ -78,18 +78,6 @@ body {
   background-color: #fffdf9;
 }
 
-button {
-  padding: 0.5rem 2.5rem;
-  /* background-color: #FF5D8F; */
-  color: #ff5d8f;
-  border: 2px solid #ff5d8f;
-  border-radius: 1.8rem;
-  transition: all 0.3s ease-in;
-  font-family: poppins;
-  font-weight: 500;
-  font-size: 1.1vw;
-}
-
 /* Apply cursor: none to buttons only on desktop */
 @media (min-width: 1025px) {
   button {
@@ -1754,4 +1742,150 @@ e pink dropdown box horizontally */
   max-width: 100vw !important;
   margin: 0 !important;
   padding: 0 !important;
+}
+
+/* Add these utility classes for text clamping */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Product Card Button Styles - Override global button styles */
+.product-card-btn {
+  padding: 0.5rem 1rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 600 !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid #ff5d8f !important;
+  font-family: inherit !important;
+}
+
+.product-card-btn.add-to-cart {
+  background-color: #ff5d8f !important;
+  color: white !important;
+}
+
+.product-card-btn.add-to-cart:hover {
+  background-color: white !important;
+  color: #ff5d8f !important;
+  transform: translateY(-1px) !important;
+}
+
+.product-card-btn.in-cart {
+  background-color: #10b981 !important;
+  border-color: #10b981 !important;
+  color: white !important;
+  cursor: not-allowed !important;
+}
+
+.product-card-btn.in-cart:hover {
+  background-color: #10b981 !important;
+  color: white !important;
+  transform: none !important;
+}
+
+/* Category Filter Button Styles - Override global button styles */
+.category-filter-btn {
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.875rem !important;
+  font-weight: 500 !important;
+  border-radius: 9999px !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid #ff5d8f !important;
+  font-family: inherit !important;
+  text-transform: capitalize !important;
+}
+
+.category-filter-btn.inactive {
+  background-color: white !important;
+  color: #ff5d8f !important;
+}
+
+.category-filter-btn.inactive:hover {
+  background-color: #ff5d8f !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+}
+
+.category-filter-btn.active {
+  background-color: #ff5d8f !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+}
+
+.category-filter-btn.active:hover {
+  background-color: #ff5d8f !important;
+  color: white !important;
+}
+
+/* CartSidebar */
+/* .plus-minus-btn {
+  color: #fff;
+  font-size: 1.5vw;
+}
+
+.proceed-btn {
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .plus-minus-btn {
+    font-size: 6vw;
+  }
+  .proceed-btn,
+  .clear-cart-btn {
+    font-size: 4vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  .plus-minus-btn {
+    font-size: 3vw;
+  }
+  .proceed-btn,
+  .clear-cart-btn {
+    font-size: 2vw;
+  }
+} */
+/* Force custom cursor on file inputs and their pseudo-elements */
+input[type="file"] {
+  cursor: none !important;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  cursor: none !important;
+}
+
+input[type="file"]::-moz-file-upload-button {
+  cursor: none !important;
+}
+
+input[type="file"]::file-selector-button {
+  cursor: none !important;
+}
+
+/* Ensure all interactive elements use custom cursor */
+button, 
+input, 
+textarea, 
+select, 
+a, 
+[role="button"],
+[tabindex]:not([tabindex="-1"]) {
+  cursor: none !important;
+}
+
+/* Override any default cursor styles */
+* {
+  cursor: none !important;
 }

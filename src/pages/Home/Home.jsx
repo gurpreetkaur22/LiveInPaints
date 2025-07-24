@@ -54,11 +54,11 @@ const Home = () => {
     const checkIsMobile = () => {
       setIsMobile(window.innerWidth <= 1024);
     };
-    
+
     checkIsMobile();
-    window.addEventListener('resize', checkIsMobile);
-    
-    return () => window.removeEventListener('resize', checkIsMobile);
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
   // Handle dropdown toggle for mobile/tablet
@@ -68,15 +68,20 @@ const Home = () => {
     }
     if (isMobile) {
       const newActiveDropdown = activeDropdown === index ? null : index;
-      console.log('Toggling dropdown from', activeDropdown, 'to', newActiveDropdown);
+      console.log(
+        "Toggling dropdown from",
+        activeDropdown,
+        "to",
+        newActiveDropdown
+      );
       setActiveDropdown(newActiveDropdown);
-      
+
       // Force update the DOM
       setTimeout(() => {
         const dropdown = document.querySelector(`.mobile-image-dropdown`);
         if (dropdown) {
-          dropdown.style.display = 'flex';
-          dropdown.style.opacity = '1';
+          dropdown.style.display = "flex";
+          dropdown.style.opacity = "1";
         }
       }, 10);
     }
@@ -90,11 +95,18 @@ const Home = () => {
     }
     // On mobile, do nothing when clicking the main area
   };
-  
+
   // Handle arrow click specifically
   const handleArrowClick = (index, event) => {
     event.stopPropagation(); // Prevent triggering elem click
-    console.log('Arrow clicked for index:', index, 'isMobile:', isMobile, 'activeDropdown:', activeDropdown);
+    console.log(
+      "Arrow clicked for index:",
+      index,
+      "isMobile:",
+      isMobile,
+      "activeDropdown:",
+      activeDropdown
+    );
     handleDropdownToggle(index, event);
   };
 
@@ -369,10 +381,7 @@ const Home = () => {
       </div>
 
       <div className="section-3 bg-gradient-to-b from-[#fff] to-[#ffedf3] lg:h-screen md:h-auto playfair-display-medium">
-        <div
-          className="elem"
-          onClick={() => handleElemClick("paintings", 0)}
-        >
+        <div className="elem" onClick={() => handleElemClick("paintings", 0)}>
           <img
             draggable="false"
             src={painting}
@@ -383,12 +392,26 @@ const Home = () => {
             <h1>Paintings</h1>
             <h4>Starts from ₹299</h4>
             {isMobile && (
-              <div 
-                className={`dropdown-arrow ${activeDropdown === 0 ? 'active' : ''}`}
+              <div
+                className={`dropdown-arrow ${
+                  activeDropdown === 0 ? "active" : ""
+                }`}
                 onClick={(e) => handleArrowClick(0, e)}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 10L12 15L17 10"
+                    stroke="#FF5D8F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             )}
@@ -413,26 +436,41 @@ const Home = () => {
             <h1>Custom Illustrations</h1>
             <h4>Starts from ₹499</h4>
             {isMobile && (
-              <div 
-                className={`dropdown-arrow ${activeDropdown === 1 ? 'active' : ''}`}
+              <div
+                className={`dropdown-arrow ${
+                  activeDropdown === 1 ? "active" : ""
+                }`}
                 onClick={(e) => handleArrowClick(1, e)}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 10L12 15L17 10"
+                    stroke="#FF5D8F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             )}
           </div>
           {isMobile && activeDropdown === 1 && (
             <div className="mobile-image-dropdown">
-              <img src={illus} alt="Custom Illustrations" className="dropdown-image" />
+              <img
+                src={illus}
+                alt="Custom Illustrations"
+                className="dropdown-image"
+              />
             </div>
           )}
         </div>
-        <div
-          className="elem"
-          onClick={() => handleElemClick("bookmarks", 2)}
-        >
+        <div className="elem" onClick={() => handleElemClick("bookmarks", 2)}>
           <img
             draggable="false"
             src={bookmark}
@@ -443,26 +481,41 @@ const Home = () => {
             <h1>Cute Bookmarks</h1>
             <h4>Starts from ₹99</h4>
             {isMobile && (
-              <div 
-                className={`dropdown-arrow ${activeDropdown === 2 ? 'active' : ''}`}
+              <div
+                className={`dropdown-arrow ${
+                  activeDropdown === 2 ? "active" : ""
+                }`}
                 onClick={(e) => handleArrowClick(2, e)}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 10L12 15L17 10"
+                    stroke="#FF5D8F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             )}
           </div>
           {isMobile && activeDropdown === 2 && (
             <div className="mobile-image-dropdown">
-              <img src={bookmark} alt="Cute Bookmarks" className="dropdown-image" />
+              <img
+                src={bookmark}
+                alt="Cute Bookmarks"
+                className="dropdown-image"
+              />
             </div>
           )}
         </div>
-        <div
-          className="elem"
-          onClick={() => handleElemClick("walletcards", 3)}
-        >
+        <div className="elem" onClick={() => handleElemClick("walletcards", 3)}>
           <img
             draggable="false"
             src={walletcard}
@@ -473,19 +526,37 @@ const Home = () => {
             <h1>Wallet Cards</h1>
             <h4>Starts from ₹199</h4>
             {isMobile && (
-              <div 
-                className={`dropdown-arrow ${activeDropdown === 3 ? 'active' : ''}`}
+              <div
+                className={`dropdown-arrow ${
+                  activeDropdown === 3 ? "active" : ""
+                }`}
                 onClick={(e) => handleArrowClick(3, e)}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 10L12 15L17 10"
+                    stroke="#FF5D8F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             )}
           </div>
           {isMobile && activeDropdown === 3 && (
             <div className="mobile-image-dropdown">
-              <img src={walletcard} alt="Wallet Cards" className="dropdown-image" />
+              <img
+                src={walletcard}
+                alt="Wallet Cards"
+                className="dropdown-image"
+              />
             </div>
           )}
         </div>
@@ -503,19 +574,37 @@ const Home = () => {
             <h1>Business Cards</h1>
             <h4>Starts from ₹199</h4>
             {isMobile && (
-              <div 
-                className={`dropdown-arrow ${activeDropdown === 4 ? 'active' : ''}`}
+              <div
+                className={`dropdown-arrow ${
+                  activeDropdown === 4 ? "active" : ""
+                }`}
                 onClick={(e) => handleArrowClick(4, e)}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 10L12 15L17 10"
+                    stroke="#FF5D8F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             )}
           </div>
           {isMobile && activeDropdown === 4 && (
             <div className="mobile-image-dropdown">
-              <img src={businesscard} alt="Business Cards" className="dropdown-image" />
+              <img
+                src={businesscard}
+                alt="Business Cards"
+                className="dropdown-image"
+              />
             </div>
           )}
         </div>
@@ -533,12 +622,26 @@ const Home = () => {
             <h1>Tile Frames</h1>
             <h4>Starts from ₹599</h4>
             {isMobile && (
-              <div 
-                className={`dropdown-arrow ${activeDropdown === 5 ? 'active' : ''}`}
+              <div
+                className={`dropdown-arrow ${
+                  activeDropdown === 5 ? "active" : ""
+                }`}
                 onClick={(e) => handleArrowClick(5, e)}
               >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M7 10L12 15L17 10" stroke="#FF5D8F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7 10L12 15L17 10"
+                    stroke="#FF5D8F"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             )}
@@ -622,7 +725,7 @@ const Home = () => {
               Has a Beginning –
             </h1>
 
-            <p className="text-[#390F0F] text-xl md:text-3xl mb-8 dancing-script-bold">
+            <p className="text-[#ff5d8f] text-xl md:text-3xl mb-8 dancing-script-bold">
               Click below to see mine!
             </p>
 

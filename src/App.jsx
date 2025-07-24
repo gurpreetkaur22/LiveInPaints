@@ -4,6 +4,7 @@ import MainRoutes from "./routes/MainRoutes";
 import CustomCursor from "./components/common/CustomCursor";
 import Preloader from "./components/common/Preloader";
 import EntranceAnimation from "./components/common/EntranceAnimation";
+import CartSidebar from "./components/cart/CartSidebar";
 import { motion, AnimatePresence } from "motion/react";
 import Footer from "./components/layout/Footer";
 
@@ -87,6 +88,7 @@ const App = () => {
               <MainRoutes />
               <Footer />
             </div>
+            <CartSidebar />
           </motion.div>
         )}
       </AnimatePresence>

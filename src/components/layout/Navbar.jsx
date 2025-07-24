@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import accountIcon from "/images/icons8-account1.webp";
 import accountIconFilled from "/images/icons8-account-filled.webp";
-import cartIcon from "/images/cart.webp";
-import cartIconFilled from "/images/cart-filled.webp";
+
 import { motion, AnimatePresence } from "motion/react";
 import "./Navbar.css";
+import CartButton from "../cart/CartButton";
 
 const Navbar = ({ showNavbar }) => {
   const [isAccountHovered, setIsAccountHovered] = useState(false);
-  const [isCartHovered, setIsCartHovered] = useState(false);
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -124,23 +124,9 @@ const Navbar = ({ showNavbar }) => {
               />
             </div>
           </NavLink>
-          <NavLink
-            to="/cart"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            <div
-              className="navbar-icon"
-              onMouseEnter={() => setIsCartHovered(true)}
-              onMouseLeave={() => setIsCartHovered(false)}
-            >
-              <img
-                className="w-full h-full"
-                src={isCartHovered ? cartIconFilled : cartIcon}
-                alt="Cart"
-                draggable={false}
-              />
-            </div>
-          </NavLink>
+          <div className="navbar-icon">
+            <CartButton />
+          </div>
           <NavLink
             to="/login"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -238,21 +224,9 @@ const Navbar = ({ showNavbar }) => {
                     />
                   </div>
                 </NavLink>
-                <NavLink to="/cart" onClick={handleNavLinkClick}>
-                  <div
-                    className="navbar-icon mobile-icon"
-                    onMouseEnter={() => setIsCartHovered(true)}
-                    onMouseLeave={() => setIsCartHovered(false)}
-                    onTouchStart={() => setIsCartHovered(true)}
-                    onTouchEnd={() => setIsCartHovered(false)}
-                  >
-                    <img
-                      src={isCartHovered ? cartIconFilled : cartIcon}
-                      alt="Cart"
-                      draggable={false}
-                    />
-                  </div>
-                </NavLink>
+                <div className="navbar-icon mobile-icon">
+                  <CartButton onMobileClick={handleNavLinkClick} />
+                </div>
               </div>
 
               <NavLink
