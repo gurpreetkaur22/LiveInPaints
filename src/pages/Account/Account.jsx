@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useUser, UserProfile } from "@clerk/clerk-react";
+import { useUser, useClerk } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Account = () => {
   const { isSignedIn, isLoaded, user } = useUser();
+  const { signOut } = useClerk();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +20,42 @@ const Account = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Get user's actual name from Google/Clerk authentication
+  const getDisplayName = () => {
+    // First try first name + last name (like "Gurpreet Kaur")
+    if (user?.firstName && user?.lastName) {
+      return `${user.firstName} ${user.lastName}`;
+    }
+    
+    // Then try just first name (like "Gurpreet")
+    if (user?.firstName) {
+      return user.firstName;
+    }
+    
+    // Then try full name if available
+    if (user?.fullName) {
+      return user.fullName;
+    }
+    
+    // Fallback to "Artist" if no name is available
+    return "Artist";
+  };
+
+  const displayName = getDisplayName();
+
+  const handleLogout = async () => {
+    try {
+      sessionStorage.setItem("liveinpaints_from_auth", "true");
+      await signOut();
+      toast.success("Successfully logged out. See you soon!", {
+        icon: "👋",
+      });
+      navigate("/");
+    } catch (error) {
+      toast.error("Error logging out. Please try again.");
+    }
+  };
 
   if (!isLoaded) {
     return (
@@ -38,66 +75,84 @@ const Account = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#fffdf9] to-[#fff5f8] pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-8 sm:pb-12 md:pb-16 lg:pb-20">
-      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-6">
+    <div className="min-h-screen bg-gradient-to-b from-[#fffdf9] to-[#fff5f8] pt-32 pb-20">
+      <div className="max-w-2xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-4 sm:mb-6 md:mb-8">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl playfair-display-bold text-[#390F0F] mb-2 sm:mb-3 md:mb-4">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl playfair-display-bold text-[#390F0F] mb-4">
             My Account
           </h1>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#FF5D8F] dancing-script-bold px-2">
-            Welcome back, {user?.firstName || "Artist"}! 🎨
+          <p className="lg:text-[2vw] md:text-[4vw] text-[#FF5D8F] dancing-script-bold">
+            Welcome back, {displayName}! 🎨
           </p>
         </div>
 
-        {/* User Profile Component */}
-        <div className="bg-white/70 backdrop-blur-sm rounded-xl sm:rounded-2xl lg:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-xl border border-[#FF5D8F]/10 overflow-hidden">
-          <div className="w-full overflow-x-auto">
-            <UserProfile
-              appearance={{
-                elements: {
-                  rootBox: "w-full max-w-none",
-                  card: "bg-transparent shadow-none border-none w-full max-w-none",
-                  navbar: "bg-white/50 rounded-lg sm:rounded-xl flex-wrap gap-1 sm:gap-2 p-2 sm:p-3 overflow-x-auto",
-                  navbarButton: "text-[#390F0F] hover:bg-[#FF5D8F]/10 text-xs sm:text-sm md:text-base px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-lg whitespace-nowrap flex-shrink-0 min-w-fit",
-                  navbarButtonActive: "bg-[#FF5D8F] text-white text-xs sm:text-sm md:text-base px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-lg whitespace-nowrap flex-shrink-0 min-w-fit",
-                  formButtonPrimary:
-                    "bg-[#FF5D8F] hover:bg-[#ff4d7d] text-white font-medium rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-4 sm:px-6 w-full sm:w-auto",
-                  formFieldInput:
-                    "border-[#FF5D8F]/20 focus:border-[#FF5D8F] rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-3 sm:px-4 w-full",
-                  formFieldLabel: "text-[#390F0F] poppins-bold text-xs sm:text-sm md:text-base mb-1 sm:mb-2",
-                  headerTitle: "text-[#390F0F] playfair-display-bold text-base sm:text-lg md:text-xl lg:text-2xl mb-2 sm:mb-3",
-                  headerSubtitle: "text-gray-600 text-xs sm:text-sm md:text-base mb-4 sm:mb-6",
-                  profileSectionTitle: "text-[#390F0F] text-sm sm:text-base md:text-lg font-semibold mb-2 sm:mb-3",
-                  profileSectionContent: "text-xs sm:text-sm md:text-base leading-relaxed",
-                  accordionTriggerButton: "text-[#390F0F] hover:bg-[#FF5D8F]/10 text-xs sm:text-sm md:text-base p-2 sm:p-3 rounded-lg w-full text-left",
-                  menuButton: "text-[#390F0F] hover:bg-[#FF5D8F]/10 text-xs sm:text-sm md:text-base p-2 sm:p-3 rounded-lg w-full text-left",
-                  menuList: "bg-white/90 backdrop-blur-sm rounded-lg sm:rounded-xl shadow-lg border border-[#FF5D8F]/10 max-w-xs sm:max-w-sm",
-                  menuItem: "text-[#390F0F] hover:bg-[#FF5D8F]/10 text-xs sm:text-sm md:text-base p-2 sm:p-3 border-b border-gray-100 last:border-b-0",
-                  profileSection: "mb-4 sm:mb-6 md:mb-8",
-                  profileSectionItem: "mb-3 sm:mb-4",
-                  profileSectionItemTitle: "text-[#390F0F] font-medium text-xs sm:text-sm md:text-base mb-1",
-                  profileSectionItemText: "text-gray-600 text-xs sm:text-sm md:text-base",
-                  avatarBox: "w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto mb-3 sm:mb-4",
-                  avatarImage: "rounded-full border-2 border-[#FF5D8F]/20",
-                  badge: "bg-[#FF5D8F]/10 text-[#FF5D8F] text-xs px-2 py-1 rounded-full",
-                  formFieldAction: "mt-2 sm:mt-3",
-                  formFieldHintText: "text-xs text-gray-500 mt-1",
-                  formFieldSuccessText: "text-xs text-green-600 mt-1",
-                  formFieldErrorText: "text-xs text-red-600 mt-1",
-                  formFieldInputShowPasswordButton: "text-[#FF5D8F] hover:text-[#ff4d7d] p-2",
-                  formResendCodeLink: "text-[#FF5D8F] hover:text-[#ff4d7d] text-xs sm:text-sm",
-                  identityPreviewText: "text-[#390F0F] text-xs sm:text-sm md:text-base",
-                  identityPreviewEditButton: "text-[#FF5D8F] hover:text-[#ff4d7d] text-xs sm:text-sm md:text-base ml-2",
-                  phoneInputBox: "flex gap-2",
-                  formFieldPhoneInput: "flex-1 border-[#FF5D8F]/20 focus:border-[#FF5D8F] rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-3 sm:px-4",
-                  formFieldPhoneInputCountryCode: "border-[#FF5D8F]/20 focus:border-[#FF5D8F] rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base py-2 sm:py-2.5 md:py-3 px-2 sm:px-3 min-w-fit",
-                  main: "w-full overflow-hidden",
-                  profilePage: "w-full",
-                  page: "w-full max-w-none",
-                },
-              }}
-            />
+        {/* Main Content */}
+        <div className="bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-[#FF5D8F]/10 p-8">
+          {/* Profile Section */}
+          <div className="text-center mb-8">
+            <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-[#FF5D8F]/20 mx-auto mb-4">
+              {user?.imageUrl ? (
+                <img
+                  src={user.imageUrl}
+                  alt={`${displayName}'s profile`}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-[#FF5D8F] to-[#ff9e9e] flex items-center justify-center">
+                  <span className="text-white text-2xl font-bold">
+                    {displayName.charAt(0)}
+                  </span>
+                </div>
+              )}
+            </div>
+            <h2 className="text-2xl playfair-display-bold text-[#390F0F] mb-2">
+              {displayName}
+            </h2>
+            <p className="text-gray-600 poppins-regular">
+              {user?.emailAddresses?.[0]?.emailAddress}
+            </p>
+          </div>
+
+          {/* Account Info */}
+          <div className="space-y-4 mb-8">
+            <div className="p-4 bg-gray-50 rounded-xl">
+              <label className="text-sm poppins-bold text-[#390F0F] block mb-1">
+                Email Address
+              </label>
+              <p className="text-gray-700 poppins-regular">
+                {user?.emailAddresses?.[0]?.emailAddress}
+              </p>
+            </div>
+            
+            <div className="p-4 bg-gray-50 rounded-xl">
+              <label className="text-sm poppins-bold text-[#390F0F] block mb-1">
+                Member Since
+              </label>
+              <p className="text-gray-700 poppins-regular">
+                {new Date(user?.createdAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'long',
+                  day: 'numeric'
+                })}
+              </p>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button
+              onClick={() => navigate('/products')}
+              className="flex-1 bg-[#FF5D8F] hover:bg-[#ff4d7d] text-white poppins-bold py-3 px-6 rounded-xl transition-all duration-200"
+            >
+              Browse Products
+            </button>
+            <button
+              onClick={handleLogout}
+              className="flex-1 bg-white hover:bg-gray-50 text-[#390F0F] border-2 border-[#FF5D8F] poppins-bold py-3 px-6 rounded-xl transition-all duration-200"
+            >
+              Sign Out
+            </button>
           </div>
         </div>
       </div>

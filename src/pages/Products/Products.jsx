@@ -232,20 +232,22 @@ function Products() {
       </motion.div>
 
       {/* Products Grid - Responsive: 2 cols mobile, 3 cols tablet, 4 cols desktop */}
-      <motion.div
-        className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
-        variants={gridVariants}
-        initial="initial"
-        animate="animate"
-      >
-        <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={selectedCategory}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"
+          variants={gridVariants}
+          initial="initial"
+          animate="animate"
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+        >
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
               variants={cardVariants}
               initial="initial"
               animate="animate"
-              exit={{ opacity: 0, scale: 0.9 }}
               transition={{
                 duration: 0.5,
                 delay: index * 0.05,
@@ -259,25 +261,22 @@ function Products() {
               <ProductCard product={product} />
             </motion.div>
           ))}
-        </AnimatePresence>
-      </motion.div>
+        </motion.div>
+      </AnimatePresence>
 
       {/* No Products Message */}
-      <AnimatePresence>
-        {filteredProducts.length === 0 && (
-          <motion.div
-            className="text-center py-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-          >
-            <p className="text-xl text-gray-500 playfair-display-regular">
-              No products found in this category.
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {filteredProducts.length === 0 && (
+        <motion.div
+          className="text-center py-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-xl text-gray-500 playfair-display-regular">
+            No products found in this category.
+          </p>
+        </motion.div>
+      )}
     </motion.div>
   );
 }

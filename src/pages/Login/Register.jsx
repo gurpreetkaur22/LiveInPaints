@@ -42,9 +42,10 @@ const Register = () => {
               <div className="w-full flex justify-center">
                 <div className="w-full max-w-sm">
                   <SignUp
-                    path="/register"
-                    routing="path"
                     signInUrl="/login"
+                    redirectUrl="/"
+                    afterSignInUrl="/"
+                    afterSignUpUrl="/"
                     appearance={{
                       elements: {
                         rootBox: "w-full flex justify-center",

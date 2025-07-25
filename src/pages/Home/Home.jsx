@@ -68,12 +68,6 @@ const Home = () => {
     }
     if (isMobile) {
       const newActiveDropdown = activeDropdown === index ? null : index;
-      console.log(
-        "Toggling dropdown from",
-        activeDropdown,
-        "to",
-        newActiveDropdown
-      );
       setActiveDropdown(newActiveDropdown);
 
       // Force update the DOM
@@ -99,14 +93,6 @@ const Home = () => {
   // Handle arrow click specifically
   const handleArrowClick = (index, event) => {
     event.stopPropagation(); // Prevent triggering elem click
-    console.log(
-      "Arrow clicked for index:",
-      index,
-      "isMobile:",
-      isMobile,
-      "activeDropdown:",
-      activeDropdown
-    );
     handleDropdownToggle(index, event);
   };
 

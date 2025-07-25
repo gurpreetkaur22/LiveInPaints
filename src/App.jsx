@@ -20,13 +20,18 @@ const App = () => {
 
   const isHomePage = location.pathname === "/";
 
-  // Initialize with a loading screen to prevent flash, decide animations in useEffect
-  const [isLoading, setIsLoading] = useState(isHomePage); // Show loading only on home page initially
+  // Initialize with optimistic loading state
+  const [isLoading, setIsLoading] = useState(() => {
+    // Only show loading if on home page AND no auth flag
+    if (!isHomePage) return false;
+    const fromAuth = sessionStorage.getItem("liveinpaints_from_auth");
+    return !fromAuth; // Show loading only if NOT from auth
+  });
   const [showEntrance, setShowEntrance] = useState(false);
   const [animationsDecided, setAnimationsDecided] = useState(false);
   let lastScroll = 0;
 
-  // Decide animations once component mounts
+  // Finalize animation decision and clean up auth flag
   useEffect(() => {
     if (animationsDecided) return;
 
@@ -56,8 +61,7 @@ const App = () => {
     }
 
     // Show animations on home page (including page refresh) unless coming from auth
-    setIsLoading(true);
-    setShowEntrance(false);
+    // isLoading should already be true from initial state if we got here
     setAnimationsDecided(true);
   }, [isHomePage, animationsDecided]);
 
@@ -91,13 +95,11 @@ const App = () => {
 
   // Handle loading complete
   const handleLoadingComplete = () => {
-    console.log("Preloader completed, showing entrance animation");
     setShowEntrance(true);
 
     // Fallback: if entrance animation doesn't complete in 10 seconds, show main content
     setTimeout(() => {
       if (showEntrance) {
-        console.log("Entrance animation timeout, forcing main content");
         handleEntranceComplete();
       }
     }, 10000);
@@ -105,7 +107,6 @@ const App = () => {
 
   // Handle entrance animation complete
   const handleEntranceComplete = () => {
-    console.log("Entrance animation completed, showing main content");
     // Enable scrolling immediately
     document.body.style.height = "auto";
     document.documentElement.style.height = "auto";
@@ -133,20 +134,6 @@ const App = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isLoading, showEntrance]);
-
-  // Debug logging
-  console.log(
-    "App render - isLoading:",
-    isLoading,
-    "showEntrance:",
-    showEntrance,
-    "userLoaded:",
-    userLoaded,
-    "isHomePage:",
-    isHomePage,
-    "animationsDecided:",
-    animationsDecided
-  );
 
   return (
     <>

@@ -60,6 +60,9 @@ const Navbar = ({ showNavbar }) => {
 
   const handleLogout = async () => {
     try {
+      // Set flag to indicate navigation from auth (logout)
+      sessionStorage.setItem('liveinpaints_from_auth', 'true');
+      
       await signOut();
       toast.success("Successfully logged out. See you soon!", {
         icon: "👋"
@@ -130,17 +133,26 @@ const Navbar = ({ showNavbar }) => {
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               <div
-                className="navbar-icon"
+                className="navbar-icon relative"
                 onMouseEnter={() => setIsAccountHovered(true)}
                 onMouseLeave={() => setIsAccountHovered(false)}
                 title={`Welcome, ${user?.firstName || 'User'}!`}
               >
-                <img
-                  className="w-full h-full"
-                  src={isAccountHovered ? accountIconFilled : accountIcon}
-                  alt="Account"
-                  draggable={false}
-                />
+                {user?.imageUrl ? (
+                  <img
+                    className="w-full h-full rounded-full object-cover border-2 border-transparent hover:border-[#FF5D8F] transition-all duration-200"
+                    src={user.imageUrl}
+                    alt={`${user?.firstName || 'User'}'s profile`}
+                    draggable={false}
+                  />
+                ) : (
+                  <img
+                    className="w-full h-full"
+                    src={isAccountHovered ? accountIconFilled : accountIcon}
+                    alt="Account"
+                    draggable={false}
+                  />
+                )}
               </div>
             </NavLink>
           )}
@@ -247,17 +259,26 @@ const Navbar = ({ showNavbar }) => {
                 {isLoaded && isSignedIn && (
                   <NavLink to="/account" onClick={handleNavLinkClick}>
                     <div
-                      className="navbar-icon mobile-icon"
+                      className="navbar-icon mobile-icon relative"
                       onMouseEnter={() => setIsAccountHovered(true)}
                       onMouseLeave={() => setIsAccountHovered(false)}
                       onTouchStart={() => setIsAccountHovered(true)}
                       onTouchEnd={() => setIsAccountHovered(false)}
                     >
-                      <img
-                        src={isAccountHovered ? accountIconFilled : accountIcon}
-                        alt="Account"
-                        draggable={false}
-                      />
+                      {user?.imageUrl ? (
+                        <img
+                          className="w-full h-full rounded-full object-cover border-2 border-transparent hover:border-[#FF5D8F] transition-all duration-200"
+                          src={user.imageUrl}
+                          alt={`${user?.firstName || 'User'}'s profile`}
+                          draggable={false}
+                        />
+                      ) : (
+                        <img
+                          src={isAccountHovered ? accountIconFilled : accountIcon}
+                          alt="Account"
+                          draggable={false}
+                        />
+                      )}
                     </div>
                   </NavLink>
                 )}

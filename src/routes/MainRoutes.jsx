@@ -26,6 +26,13 @@ const MainRoutes = () => {
         <Route path="/account" element={<Account />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/sso-callback" element={<SSOCallback />} />
+        <Route path="/sign-factor-one" element={<Login />} />
+        <Route path="/sign-factor-two" element={<Login />} />
+        <Route path="/verify" element={<Login />} />
+        <Route path="/sign-up/verify-email-address" element={<Register />} />
+        <Route path="/sign-up/continue" element={<Register />} />
+        <Route path="/sign-in/factor-one" element={<Login />} />
+        <Route path="/sign-in/factor-two" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
