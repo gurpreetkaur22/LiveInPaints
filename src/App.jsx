@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 import Navbar from "./components/layout/Navbar";
 import MainRoutes from "./routes/MainRoutes";
 import CustomCursor from "./components/common/CustomCursor";
@@ -8,42 +9,78 @@ import EntranceAnimation from "./components/common/EntranceAnimation";
 import CartSidebar from "./components/cart/CartSidebar";
 import { motion, AnimatePresence } from "motion/react";
 import Footer from "./components/layout/Footer";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-// Global variable to track if we've navigated (survives React re-renders but not page refresh)
-if (!window.hasNavigatedInSession) {
-  window.hasNavigatedInSession = false;
-}
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
   const scrollRef = useRef(null);
   const [showNavbar, setShowNavbar] = useState(true);
   const location = useLocation();
-  
-  const isHomePage = location.pathname === '/';
-  
-  // Simple logic: show animations only on home page when we haven't navigated yet
-  const shouldShowAnimations = isHomePage && !window.hasNavigatedInSession;
-  
-  const [isLoading, setIsLoading] = useState(shouldShowAnimations);
-  const [showEntrance, setShowEntrance] = useState(false);
-  let lastScroll = 0;
-  
-  // Mark that we've navigated - but only after animations complete or if no animations
-  useEffect(() => {
-    if (!shouldShowAnimations) {
-      // If no animations should show, mark immediately
-      window.hasNavigatedInSession = true;
+  const { isLoaded: userLoaded, user } = useUser();
+  const navigate = useNavigate();
+
+  const isHomePage = location.pathname === "/";
+
+  // Check if animations should show based on navigation history
+  const shouldShowAnimations = () => {
+    // Don't show animations if Clerk isn't loaded yet
+    if (!userLoaded) return false;
+
+    // Don't show animations if not on home page
+    if (!isHomePage) return false;
+
+    // Check if user came from authentication pages (login/register/logout)
+    const fromAuth = sessionStorage.getItem("liveinpaints_from_auth");
+    if (fromAuth) {
+      // Clear the flag and don't show animations
+      sessionStorage.removeItem("liveinpaints_from_auth");
+      return false;
     }
-    // If animations should show, we'll mark it in handleEntranceComplete
-  }, [shouldShowAnimations]);
+
+    // Show animations on home page (including page refresh) unless coming from auth
+    return true;
+  };
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [showEntrance, setShowEntrance] = useState(false);
+  const [animationsDecided, setAnimationsDecided] = useState(false);
+  let lastScroll = 0;
+
+  // Initialize animations state once Clerk is loaded
+  useEffect(() => {
+    if (!userLoaded || animationsDecided) return;
+
+    const showAnims = shouldShowAnimations();
+    setIsLoading(showAnims);
+    setShowEntrance(false);
+    setAnimationsDecided(true);
+
+    if (!showAnims) {
+      // Ensure scrolling is enabled for immediate content display
+      document.body.style.height = "auto";
+      document.documentElement.style.height = "auto";
+    }
+  }, [userLoaded, isHomePage, animationsDecided]);
+
+  // Track navigation from auth pages
+  useEffect(() => {
+    const currentPath = location.pathname;
+
+    // Set flag when navigating away from auth pages
+    if (
+      currentPath === "/login" ||
+      currentPath === "/register" ||
+      currentPath === "/account"
+    ) {
+      sessionStorage.setItem("liveinpaints_from_auth", "true");
+    }
+  }, [location.pathname]);
 
   // Handle loading complete
   const handleLoadingComplete = () => {
     console.log("Preloader completed, showing entrance animation");
     setShowEntrance(true);
-    
+
     // Fallback: if entrance animation doesn't complete in 10 seconds, show main content
     setTimeout(() => {
       if (showEntrance) {
@@ -60,25 +97,10 @@ const App = () => {
     document.body.style.height = "auto";
     document.documentElement.style.height = "auto";
 
-    // Mark that we've navigated (after animations complete)
-    window.hasNavigatedInSession = true;
-
     // Update state to show main content
     setShowEntrance(false);
     setIsLoading(false);
   };
-
-  // Handle route changes
-  useEffect(() => {
-    if (!shouldShowAnimations) {
-      // On navigation or other pages, skip animations and show content directly
-      setIsLoading(false);
-      setShowEntrance(false);
-      // Ensure scrolling is enabled
-      document.body.style.height = "auto";
-      document.documentElement.style.height = "auto";
-    }
-  }, [shouldShowAnimations]);
 
   // Handle native scrolling for navbar
   useEffect(() => {
@@ -100,7 +122,16 @@ const App = () => {
   }, [isLoading, showEntrance]);
 
   // Debug logging
-  console.log("App render - isLoading:", isLoading, "showEntrance:", showEntrance, "shouldShowAnimations:", shouldShowAnimations);
+  console.log(
+    "App render - isLoading:",
+    isLoading,
+    "showEntrance:",
+    showEntrance,
+    "userLoaded:",
+    userLoaded,
+    "animationsDecided:",
+    animationsDecided
+  );
 
   return (
     <>
@@ -158,11 +189,11 @@ const App = () => {
         pauseOnHover
         theme="light"
         toastStyle={{
-          backgroundColor: '#fff',
-          color: '#390F0F',
-          borderRadius: '12px',
-          border: '1px solid #FF5D8F20',
-          fontFamily: 'Poppins, sans-serif'
+          backgroundColor: "#fff",
+          color: "#390F0F",
+          borderRadius: "12px",
+          border: "1px solid #FF5D8F20",
+          fontFamily: "Poppins, sans-serif",
         }}
       />
     </>

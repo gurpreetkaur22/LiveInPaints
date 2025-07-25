@@ -9,6 +9,9 @@ const Register = () => {
 
   useEffect(() => {
     if (isLoaded && isSignedIn) {
+      // Set flag to indicate navigation from auth
+      sessionStorage.setItem('liveinpaints_from_auth', 'true');
+      
       toast.success("Welcome to LiveInPaints! Account created successfully.", {
         icon: "🎨",
       });
