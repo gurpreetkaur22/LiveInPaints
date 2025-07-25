@@ -7,6 +7,9 @@ import About from "../pages/About/About.jsx";
 import Contact from "../pages/Contact/Contact.jsx";
 import Login from "../pages/Login/Login.jsx";
 import Register from "../pages/Login/Register.jsx";
+import Account from "../pages/Account/Account.jsx";
+import Checkout from "../pages/Checkout/Checkout.jsx";
+import SSOCallback from "../pages/Login/SSOCallback.jsx";
 import PageNotFound from "../pages/PageNotFound.jsx";
 
 const MainRoutes = () => {
@@ -20,6 +23,9 @@ const MainRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/sso-callback" element={<SSOCallback />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>

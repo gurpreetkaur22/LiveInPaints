@@ -151,14 +151,14 @@ function ProductDetail() {
           <div className="flex items-center space-x-2 text-sm">
             <button 
               onClick={() => navigate('/')}
-              className="text-[#FF5D8F] hover:text-[#390F0F] transition-colors duration-200"
+              className="PD-btn text-[#FF5D8F] hover:text-[#390F0F] transition-colors duration-200"
             >
               Home
             </button>
             <span className="text-gray-400">/</span>
             <button 
               onClick={() => navigate('/products')}
-              className="text-[#FF5D8F] hover:text-[#390F0F] transition-colors duration-200"
+              className="PD-btn text-[#FF5D8F] hover:text-[#390F0F] transition-colors duration-200"
             >
               Products
             </button>

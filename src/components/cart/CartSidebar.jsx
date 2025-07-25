@@ -1,5 +1,8 @@
 import React from "react";
 import { useCart } from "../../contexts";
+import { useUser } from "@clerk/clerk-react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { motion, AnimatePresence } from "motion/react";
 
 function CartSidebar() {
@@ -14,8 +17,35 @@ function CartSidebar() {
     clearCart,
   } = useCart();
 
+  const { isSignedIn, isLoaded } = useUser();
+  const navigate = useNavigate();
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
+
+  const handleCheckout = () => {
+    if (!isLoaded) {
+      toast.info("Please wait while we load your account information...", {
+        icon: "⏳"
+      });
+      return;
+    }
+
+    if (!isSignedIn) {
+      toast.info("Please sign in to proceed with checkout", {
+        icon: "🔐"
+      });
+      toggleCart(); // Close cart
+      navigate("/login");
+      return;
+    }
+
+    // User is signed in, proceed with checkout
+    toast.success("Proceeding to checkout...", {
+      icon: "🛒"
+    });
+    toggleCart(); // Close cart
+    navigate("/checkout");
+  };
 
   return (
     <AnimatePresence>
@@ -97,9 +127,26 @@ function CartSidebar() {
                   <p className="text-gray-500 text-lg mb-2">
                     Your cart is empty
                   </p>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-gray-400 text-sm mb-4">
                     Add some products to get started!
                   </p>
+                  
+                  {isLoaded && !isSignedIn && (
+                    <div className="mt-4 p-4 bg-[#FF5D8F]/10 rounded-lg border border-[#FF5D8F]/20">
+                      <p className="text-sm text-[#390F0F] mb-3">
+                        🔐 Sign in for a better shopping experience!
+                      </p>
+                      <button
+                        onClick={() => {
+                          toggleCart();
+                          navigate("/login");
+                        }}
+                        className="px-4 py-2 bg-[#FF5D8F] text-white rounded-lg text-sm font-medium hover:bg-[#ff4d7d] transition-colors duration-200"
+                      >
+                        Sign In Now
+                      </button>
+                    </div>
+                  )}
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -200,8 +247,24 @@ function CartSidebar() {
                 </div>
 
                 {/* Checkout Button */}
-                <button className="proceed-btn w-full bg-[#FF5D8F] text-white py-4 rounded-full font-semibold hover:bg-[#FF5D8F]/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
-                  Proceed to Checkout
+                <button 
+                  onClick={handleCheckout}
+                  className="proceed-btn w-full bg-[#FF5D8F] text-white py-4 rounded-full font-semibold hover:bg-[#FF5D8F]/90 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                >
+                  {!isLoaded ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                      Loading...
+                    </>
+                  ) : !isSignedIn ? (
+                    <>
+                      🔐 Sign In to Checkout
+                    </>
+                  ) : (
+                    <>
+                      🛒 Proceed to Checkout
+                    </>
+                  )}
                 </button>
               </div>
             )}

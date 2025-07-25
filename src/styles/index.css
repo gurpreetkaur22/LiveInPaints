@@ -1959,3 +1959,9 @@ a,
 .Toastify__toast--error .Toastify__toast-icon svg {
   fill: white !important;
 }
+
+.PD-btn:hover, .LR-btns:hover, .PNF-btn:hover {
+  background-color: transparent;
+  text-decoration: underline;
+  color: #FF5D8F;
+}

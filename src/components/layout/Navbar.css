@@ -113,6 +113,19 @@
   transform: scale(0.95);
 }
 
+/* Logout button specific styling */
+.logout-btn {
+  background-color: #ff5d8f;
+  color: white;
+  border: 2px solid #ff5d8f;
+}
+
+.logout-btn:hover {
+  background-color: #ff4d7d;
+  border-color: #ff4d7d;
+  color: white;
+}
+
 /* Hamburger menu button - hidden by default */
 .hamburger-btn {
   display: none;

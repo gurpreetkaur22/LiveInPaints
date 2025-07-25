@@ -212,7 +212,7 @@ export const products = [
     price: 249,
     originalPrice: 299,
     image: "/images/NewBusinesscard.webp",
-    images: ["/images/NewBusinesscard.webp", "/images/businesscard.webp"],
+    images: ["/images/NewBusinesscard.webp", "/images/businesscard.webp",  "/images/NewBusinesscard2.webp"],
     description:
       "Premium executive business cards with sophisticated design and high-quality materials for professional networking.",
     features: [

@@ -83,6 +83,7 @@
   .footer-responsive .div3 .contact-container {
     align-items: center !important;
     font-size: 2.5vw !important;
+    gap: 0.5rem !important;
   }
 
   .footer-responsive .div3 img,
@@ -148,6 +149,11 @@
   .footer-responsive .div3 .contact-container {
     align-items: center !important;
     font-size: 3.5vw !important;
+    gap: 0.25rem !important;
+  }
+
+  .footer-responsive .div3 .contact-container p {
+    font-size: 4vw !important;
   }
 
   .footer-responsive .div3 img,
@@ -188,6 +194,7 @@
 
   .footer-responsive .div3 .contact-container {
     font-size: 4vw !important;
+    gap: 0.125rem !important;
   }
 
   .footer-responsive .div3 img,
@@ -203,8 +210,8 @@
   /* Ensure contact links have proper spacing on small screens */
   .footer-responsive .div3 .contact-container a,
   .footer-responsive .div3 .contact-container button {
-    padding: 0.5rem 0 !important;
-    min-height: 44px !important; /* Minimum touch target size */
+    padding: 0.25rem 0 !important;
+    /* min-height: 44px !important; Minimum touch target size */
   }
 }
 
