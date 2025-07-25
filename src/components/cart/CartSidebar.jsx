@@ -16,7 +16,7 @@ function CartSidebar() {
 
   const totalItems = getTotalItems();
   const totalPrice = getTotalPrice();
-  
+
   return (
     <AnimatePresence>
       {isCartOpen && (
@@ -86,7 +86,13 @@ function CartSidebar() {
                       d="M9 13h6"
                       opacity="0.5"
                     />
-                    <circle cx="12" cy="15" r="1" fill="currentColor" opacity="0.3"/>
+                    <circle
+                      cx="12"
+                      cy="15"
+                      r="1"
+                      fill="currentColor"
+                      opacity="0.3"
+                    />
                   </svg>
                   <p className="text-gray-500 text-lg mb-2">
                     Your cart is empty
