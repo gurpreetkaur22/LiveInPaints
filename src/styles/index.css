@@ -1,5 +1,25 @@
 @import "tailwindcss";
 
+/* Smooth Scrolling Enhancements */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed navbar */
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced smooth scrolling for all elements */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Smooth transitions for better UX */
+a[href^="#"] {
+  scroll-behavior: smooth;
+}
+
 /* Custom Scrollbar Styles - Only for the main body scrollbar */
 /* For WebKit browsers (Chrome, Safari, Edge) */
 body::-webkit-scrollbar {

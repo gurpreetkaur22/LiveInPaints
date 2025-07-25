@@ -7,6 +7,7 @@ import CustomCursor from "./components/common/CustomCursor";
 import Preloader from "./components/common/Preloader";
 import EntranceAnimation from "./components/common/EntranceAnimation";
 import CartSidebar from "./components/cart/CartSidebar";
+import SmoothScroll from "./components/common/SmoothScroll";
 import { motion, AnimatePresence } from "motion/react";
 import Footer from "./components/layout/Footer";
 import { ToastContainer } from "react-toastify";
@@ -137,46 +138,48 @@ const App = () => {
 
   return (
     <>
-      <CustomCursor />
+      <SmoothScroll>
+        <CustomCursor />
 
-      <AnimatePresence mode="wait">
-        {/* Preloader */}
-        {isLoading && !showEntrance && (
-          <Preloader
-            key="preloader"
-            onLoadingComplete={handleLoadingComplete}
-          />
-        )}
+        <AnimatePresence mode="wait">
+          {/* Preloader */}
+          {isLoading && !showEntrance && (
+            <Preloader
+              key="preloader"
+              onLoadingComplete={handleLoadingComplete}
+            />
+          )}
 
-        {/* Entrance Animation */}
-        {showEntrance && (
-          <EntranceAnimation
-            key="entrance"
-            onComplete={handleEntranceComplete}
-          />
-        )}
+          {/* Entrance Animation */}
+          {showEntrance && (
+            <EntranceAnimation
+              key="entrance"
+              onComplete={handleEntranceComplete}
+            />
+          )}
 
-        {/* Main Content */}
-        {!isLoading && !showEntrance && (
-          <motion.div
-            key="main-content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="app-content w-full max-w-[100vw] overflow-hidden"
-          >
-            <Navbar showNavbar={showNavbar} />
-            <div
-              ref={scrollRef}
-              className="relative bg-gradient-to-b from-[#f7e7e9] to-[#fff] w-full max-w-[100vw] overflow-hidden"
+          {/* Main Content */}
+          {!isLoading && !showEntrance && (
+            <motion.div
+              key="main-content"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              className="app-content w-full max-w-[100vw] overflow-hidden"
             >
-              <MainRoutes />
-              <Footer />
-            </div>
-            <CartSidebar />
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <Navbar showNavbar={showNavbar} />
+              <div
+                ref={scrollRef}
+                className="relative bg-gradient-to-b from-[#f7e7e9] to-[#fff] w-full max-w-[100vw] overflow-hidden"
+              >
+                <MainRoutes />
+                <Footer />
+              </div>
+              <CartSidebar />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </SmoothScroll>
 
       {/* Toast Container */}
       <ToastContainer

@@ -27,17 +27,17 @@ const Account = () => {
     if (user?.firstName && user?.lastName) {
       return `${user.firstName} ${user.lastName}`;
     }
-    
+
     // Then try just first name (like "Gurpreet")
     if (user?.firstName) {
       return user.firstName;
     }
-    
+
     // Then try full name if available
     if (user?.fullName) {
       return user.fullName;
     }
-    
+
     // Fallback to "Artist" if no name is available
     return "Artist";
   };
@@ -124,16 +124,16 @@ const Account = () => {
                 {user?.emailAddresses?.[0]?.emailAddress}
               </p>
             </div>
-            
+
             <div className="p-4 bg-gray-50 rounded-xl">
               <label className="text-sm poppins-bold text-[#390F0F] block mb-1">
                 Member Since
               </label>
               <p className="text-gray-700 poppins-regular">
-                {new Date(user?.createdAt).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
+                {new Date(user?.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
                 })}
               </p>
             </div>
@@ -142,7 +142,7 @@ const Account = () => {
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <button
-              onClick={() => navigate('/products')}
+              onClick={() => navigate("/products")}
               className="flex-1 bg-[#FF5D8F] hover:bg-[#ff4d7d] text-white poppins-bold py-3 px-6 rounded-xl transition-all duration-200"
             >
               Browse Products
