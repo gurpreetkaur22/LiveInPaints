@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useUser } from "@clerk/clerk-react";
 import Navbar from "./components/layout/Navbar";
 import MainRoutes from "./routes/MainRoutes";
@@ -16,51 +16,64 @@ const App = () => {
   const scrollRef = useRef(null);
   const [showNavbar, setShowNavbar] = useState(true);
   const location = useLocation();
-  const { isLoaded: userLoaded, user } = useUser();
-  const navigate = useNavigate();
+  const { isLoaded: userLoaded } = useUser();
 
   const isHomePage = location.pathname === "/";
 
-  // Check if animations should show based on navigation history
-  const shouldShowAnimations = () => {
-    // Don't show animations if Clerk isn't loaded yet
-    if (!userLoaded) return false;
+  // Initialize with a loading screen to prevent flash, decide animations in useEffect
+  const [isLoading, setIsLoading] = useState(isHomePage); // Show loading only on home page initially
+  const [showEntrance, setShowEntrance] = useState(false);
+  const [animationsDecided, setAnimationsDecided] = useState(false);
+  let lastScroll = 0;
+
+  // Decide animations once component mounts
+  useEffect(() => {
+    if (animationsDecided) return;
 
     // Don't show animations if not on home page
-    if (!isHomePage) return false;
+    if (!isHomePage) {
+      setIsLoading(false);
+      setShowEntrance(false);
+      setAnimationsDecided(true);
+      // Ensure scrolling is enabled
+      document.body.style.height = "auto";
+      document.documentElement.style.height = "auto";
+      return;
+    }
 
     // Check if user came from authentication pages (login/register/logout)
     const fromAuth = sessionStorage.getItem("liveinpaints_from_auth");
     if (fromAuth) {
       // Clear the flag and don't show animations
       sessionStorage.removeItem("liveinpaints_from_auth");
-      return false;
+      setIsLoading(false);
+      setShowEntrance(false);
+      setAnimationsDecided(true);
+      // Ensure scrolling is enabled
+      document.body.style.height = "auto";
+      document.documentElement.style.height = "auto";
+      return;
     }
 
     // Show animations on home page (including page refresh) unless coming from auth
-    return true;
-  };
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [showEntrance, setShowEntrance] = useState(false);
-  const [animationsDecided, setAnimationsDecided] = useState(false);
-  let lastScroll = 0;
-
-  // Initialize animations state once Clerk is loaded
-  useEffect(() => {
-    if (!userLoaded || animationsDecided) return;
-
-    const showAnims = shouldShowAnimations();
-    setIsLoading(showAnims);
+    setIsLoading(true);
     setShowEntrance(false);
     setAnimationsDecided(true);
+  }, [isHomePage, animationsDecided]);
 
-    if (!showAnims) {
-      // Ensure scrolling is enabled for immediate content display
+  // Additional check once Clerk is loaded (safety net)
+  useEffect(() => {
+    if (!userLoaded || !animationsDecided) return;
+
+    // If we're not on home page and animations are showing, stop them
+    if (!isHomePage && isLoading) {
+      setIsLoading(false);
+      setShowEntrance(false);
+      // Ensure scrolling is enabled
       document.body.style.height = "auto";
       document.documentElement.style.height = "auto";
     }
-  }, [userLoaded, isHomePage, animationsDecided]);
+  }, [userLoaded, isHomePage, isLoading, animationsDecided]);
 
   // Track navigation from auth pages
   useEffect(() => {
@@ -129,6 +142,8 @@ const App = () => {
     showEntrance,
     "userLoaded:",
     userLoaded,
+    "isHomePage:",
+    isHomePage,
     "animationsDecided:",
     animationsDecided
   );

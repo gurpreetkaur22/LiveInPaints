@@ -60,9 +60,6 @@ const Navbar = ({ showNavbar }) => {
 
   const handleLogout = async () => {
     try {
-      // Set flag to indicate navigation from auth (logout)
-      sessionStorage.setItem('liveinpaints_from_auth', 'true');
-      
       await signOut();
       toast.success("Successfully logged out. See you soon!", {
         icon: "👋"
