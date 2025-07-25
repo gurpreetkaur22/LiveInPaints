@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useCart } from '../../contexts';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,18 +21,32 @@ function ProductCard({ product }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 h-full flex flex-col">
-      <div 
+    <motion.div 
+      className="bg-white rounded-lg shadow-md overflow-hidden h-full flex flex-col"
+      whileHover={{ 
+        shadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        transition: { duration: 0.3 }
+      }}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <motion.div 
         className="aspect-square overflow-hidden cursor-pointer"
         onClick={handleImageClick}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.2 }}
       >
         {!imageError ? (
-          <img 
+          <motion.img 
             src={product.image} 
             alt={product.name}
-            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover"
             draggable={false}
             onError={handleImageError}
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
           />
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-500 hover:from-gray-200 hover:to-gray-300 transition-colors duration-300">
@@ -43,7 +58,7 @@ function ProductCard({ product }) {
             </div>
           </div>
         )}
-      </div>
+      </motion.div>
       
       <div className="p-2 md:p-4 flex flex-col flex-grow">
         <h3 className="text-sm md:text-lg font-semibold text-[#390F0F] mb-1 md:mb-2 line-clamp-2 leading-tight">
@@ -59,18 +74,33 @@ function ProductCard({ product }) {
             ₹{product.price}
           </span>
           
-          <button
+          <motion.button
             onClick={handleAddToCart}
             disabled={isInCart(product.id)}
             className={`product-card-btn w-full md:w-auto order-2 md:order-2 ${
               isInCart(product.id) ? 'in-cart' : 'add-to-cart'
             }`}
+            whileHover={{ 
+              scale: isInCart(product.id) ? 1 : 1.05,
+              transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.2 }}
           >
-            {isInCart(product.id) ? '✓ In Cart' : 'Add to Cart'}
-          </button>
+            <motion.span
+              key={isInCart(product.id) ? 'in-cart' : 'add-to-cart'}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {isInCart(product.id) ? '✓ In Cart' : 'Customize Now'}
+            </motion.span>
+          </motion.button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
