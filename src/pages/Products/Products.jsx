@@ -133,7 +133,7 @@ function Products() {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-b from-[#fff5f8] to-[#fff] pt-32 pb-20 px-4 relative overflow-hidden"
+      className="min-h-screen bg-gradient-to-b from-[#fff5f8] to-[#fff] pt-32 pb-20 px-10 relative overflow-hidden"
       variants={pageVariants}
       initial="initial"
       animate="animate"

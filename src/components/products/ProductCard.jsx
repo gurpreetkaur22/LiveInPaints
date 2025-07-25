@@ -95,7 +95,7 @@ function ProductCard({ product }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.2 }}
             >
-              {isInCart(product.id) ? '✓ In Cart' : 'Customize Now'}
+              {isInCart(product.id) ? '✓ In Cart' : 'Add to cart'}
             </motion.span>
           </motion.button>
         </div>
