@@ -8,7 +8,7 @@ LiveInPaints is a premium e-commerce platform that brings your photos to life wi
 
 [Visit LiveInPaints](https://live-in-paints.vercel.app) - Experience the magic of animated art!
 
-![LiveInPaints Screenshot](/images/screenshot.png)
+![LiveInPaints Screenshot](./public/images/screenshot.png)
 
 ## 🎨 Features
 
